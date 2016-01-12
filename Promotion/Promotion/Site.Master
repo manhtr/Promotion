@@ -1,0 +1,51 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="LogSystem.SupportCustomerSystem.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=9" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Công nghệ phần mềm nâng cao - Nhóm 1</title>
+    <%--<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />--%>
+    <link href="~/Content/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+    <link href="~/Content/mos-style.css" rel="stylesheet" />
+    <link href="~/Content/jquery.ui.1.10.3.ie.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui-1.10.3.theme.css" rel="stylesheet" />
+
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Path="Scripts/jquery-1.11.3.min.js" />
+                <asp:ScriptReference Path="Scripts/jquery-ui-1.10.3.custom.min.js" />
+                <asp:ScriptReference Path="Scripts/jquery.maskedinput.js" />
+                <asp:ScriptReference Path="Scripts/SpellNumber.js" />
+                <asp:ScriptReference Path="Scripts/autoNumeric-1.9.8.js" />
+
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div class="page">
+            <div class="header">
+                <div class="title">
+                    <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+                </div>
+            </div>
+            <div class="main">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </div>
+            <div class="clear">
+            </div>
+            <div class="footer">
+                &copy; <%: DateTime.Now.Year %> - Bản quyền thuộc về ...
+            </div>
+        </div>
+    </form>
+</body>
+</html>

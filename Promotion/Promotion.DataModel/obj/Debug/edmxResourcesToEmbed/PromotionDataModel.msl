@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PromotionModelStoreContainer" CdmEntityContainer="PromotionEntities">
+    <EntitySetMapping Name="BLACKLIST_CUSTOMER">
+      <EntityTypeMapping TypeName="PromotionModel.BLACKLIST_CUSTOMER">
+        <MappingFragment StoreEntitySet="BLACKLIST_CUSTOMER">
+          <ScalarProperty Name="HO_TEN" ColumnName="HO_TEN" />
+          <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COMPANies">
+      <EntityTypeMapping TypeName="PromotionModel.COMPANY">
+        <MappingFragment StoreEntitySet="COMPANY">
+          <ScalarProperty Name="LANGUAGE_CODE" ColumnName="LANGUAGE_CODE" />
+          <ScalarProperty Name="MNEMONIC" ColumnName="MNEMONIC" />
+          <ScalarProperty Name="NAME_ADDRESS" ColumnName="NAME_ADDRESS" />
+          <ScalarProperty Name="COMPANY_NAME" ColumnName="COMPANY_NAME" />
+          <ScalarProperty Name="COMPANY_CODE" ColumnName="COMPANY_CODE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DAOs">
+      <EntityTypeMapping TypeName="PromotionModel.DAO">
+        <MappingFragment StoreEntitySet="DAO">
+          <ScalarProperty Name="DEPARTMENT_LCL" ColumnName="DEPARTMENT_LCL" />
+          <ScalarProperty Name="DEPT_PARENT" ColumnName="DEPT_PARENT" />
+          <ScalarProperty Name="DEPT_LEVEL" ColumnName="DEPT_LEVEL" />
+          <ScalarProperty Name="DELIVERY_POINT" ColumnName="DELIVERY_POINT" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="AREA" ColumnName="AREA" />
+          <ScalarProperty Name="DAO_CODE" ColumnName="DAO_CODE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DAO_COMPANY">
+      <EntityTypeMapping TypeName="PromotionModel.DAO_COMPANY">
+        <MappingFragment StoreEntitySet="DAO_COMPANY">
+          <ScalarProperty Name="COMPANY_CODE" ColumnName="COMPANY_CODE" />
+          <ScalarProperty Name="DAO_CODE" ColumnName="DAO_CODE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DelSerials">
+      <EntityTypeMapping TypeName="PromotionModel.DelSerial">
+        <MappingFragment StoreEntitySet="DelSerial">
+          <ScalarProperty Name="input_time" ColumnName="input_time" />
+          <ScalarProperty Name="SavedBy" ColumnName="SavedBy" />
+          <ScalarProperty Name="Serial" ColumnName="Serial" />
+          <ScalarProperty Name="book_number" ColumnName="book_number" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LiXis">
+      <EntityTypeMapping TypeName="PromotionModel.LiXi">
+        <MappingFragment StoreEntitySet="LiXi">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="DEPT_CODE" ColumnName="DEPT_CODE" />
+          <ScalarProperty Name="DAO_CODE" ColumnName="DAO_CODE" />
+          <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CoCode" ColumnName="CoCode" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="CMND" ColumnName="CMND" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="CIF" ColumnName="CIF" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LuckySerials">
+      <EntityTypeMapping TypeName="PromotionModel.LuckySerial">
+        <MappingFragment StoreEntitySet="LuckySerial">
+          <ScalarProperty Name="input_time" ColumnName="input_time" />
+          <ScalarProperty Name="SavedBy" ColumnName="SavedBy" />
+          <ScalarProperty Name="seq" ColumnName="seq" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="book_number" ColumnName="book_number" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Permisions">
+      <EntityTypeMapping TypeName="PromotionModel.Permision">
+        <MappingFragment StoreEntitySet="Permision">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Permision1" ColumnName="Permision" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SerialByMonths">
+      <EntityTypeMapping TypeName="PromotionModel.SerialByMonth">
+        <MappingFragment StoreEntitySet="SerialByMonth">
+          <ScalarProperty Name="effect_date" ColumnName="effect_date" />
+          <ScalarProperty Name="SoPhieu" ColumnName="SoPhieu" />
+          <ScalarProperty Name="USD" ColumnName="USD" />
+          <ScalarProperty Name="VND" ColumnName="VND" />
+          <ScalarProperty Name="Period" ColumnName="Period" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SerialByWeeks">
+      <EntityTypeMapping TypeName="PromotionModel.SerialByWeek">
+        <MappingFragment StoreEntitySet="SerialByWeek">
+          <ScalarProperty Name="effect_date" ColumnName="effect_date" />
+          <ScalarProperty Name="SoPhieu" ColumnName="SoPhieu" />
+          <ScalarProperty Name="USD" ColumnName="USD" />
+          <ScalarProperty Name="VND" ColumnName="VND" />
+          <ScalarProperty Name="Period" ColumnName="Period" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SerialMaxes">
+      <EntityTypeMapping TypeName="PromotionModel.SerialMax">
+        <MappingFragment StoreEntitySet="SerialMax">
+          <ScalarProperty Name="input_time" ColumnName="input_time" />
+          <ScalarProperty Name="MaxSerial" ColumnName="MaxSerial" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SerialResults">
+      <EntityTypeMapping TypeName="PromotionModel.SerialResult">
+        <MappingFragment StoreEntitySet="SerialResult">
+          <ScalarProperty Name="DEPT_CODE" ColumnName="DEPT_CODE" />
+          <ScalarProperty Name="DAO_CODE" ColumnName="DAO_CODE" />
+          <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+          <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="Seq" ColumnName="Seq" />
+          <ScalarProperty Name="cMoney" ColumnName="cMoney" />
+          <ScalarProperty Name="Times" ColumnName="Times" />
+          <ScalarProperty Name="TERM" ColumnName="TERM" />
+          <ScalarProperty Name="CO_CODE" ColumnName="CO_CODE" />
+          <ScalarProperty Name="ACCT_NUM" ColumnName="ACCT_NUM" />
+          <ScalarProperty Name="MATURITY_DATE" ColumnName="MATURITY_DATE" />
+          <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+          <ScalarProperty Name="Sector" ColumnName="Sector" />
+          <ScalarProperty Name="SavedBy" ColumnName="SavedBy" />
+          <ScalarProperty Name="Input_time" ColumnName="Input_time" />
+          <ScalarProperty Name="Serials" ColumnName="Serials" />
+          <ScalarProperty Name="currency" ColumnName="currency" />
+          <ScalarProperty Name="kyhan" ColumnName="kyhan" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="book_number" ColumnName="book_number" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="CMND" ColumnName="CMND" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STAFF_USER">
+      <EntityTypeMapping TypeName="PromotionModel.STAFF_USER">
+        <MappingFragment StoreEntitySet="STAFF_USER">
+          <ScalarProperty Name="ACCOUNT_OFFICER" ColumnName="ACCOUNT_OFFICER" />
+          <ScalarProperty Name="T24_USERID" ColumnName="T24_USERID" />
+          <ScalarProperty Name="REP_DEPARTMENT" ColumnName="REP_DEPARTMENT" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="IS_USE" ColumnName="IS_USE" />
+          <ScalarProperty Name="RANK" ColumnName="RANK" />
+          <ScalarProperty Name="PHONG_BAN" ColumnName="PHONG_BAN" />
+          <ScalarProperty Name="HO_TEN" ColumnName="HO_TEN" />
+          <ScalarProperty Name="DEPT_CODE" ColumnName="DEPT_CODE" />
+          <ScalarProperty Name="DAO_CODE" ColumnName="DAO_CODE" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="PromotionModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

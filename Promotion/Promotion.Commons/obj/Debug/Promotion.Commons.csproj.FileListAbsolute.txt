@@ -1,0 +1,12 @@
+D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\GPPromotion.Commons\bin\Debug\Promotion.Commons.dll
+D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\GPPromotion.Commons\bin\Debug\Promotion.Commons.pdb
+D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\GPPromotion.Commons\obj\Debug\Promotion.Commons.dll
+D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\GPPromotion.Commons\obj\Debug\Promotion.Commons.pdb
+D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\Promotion\GPPromotion.Commons\bin\Debug\Promotion.Commons.dll
+D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\Promotion\GPPromotion.Commons\bin\Debug\Promotion.Commons.pdb
+D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\Promotion\GPPromotion.Commons\obj\Debug\Promotion.Commons.dll
+D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\Promotion\GPPromotion.Commons\obj\Debug\Promotion.Commons.pdb
+D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\Promotion\Promotion.Commons\bin\Debug\Promotion.Commons.dll
+D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\Promotion\Promotion.Commons\bin\Debug\Promotion.Commons.pdb
+D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\Promotion\Promotion.Commons\obj\Debug\Promotion.Commons.dll
+D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\Promotion\Promotion.Commons\obj\Debug\Promotion.Commons.pdb

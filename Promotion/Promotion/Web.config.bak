@@ -1,0 +1,221 @@
+﻿<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+<configuration>
+  <configSections>
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    <sectionGroup name="devExpress">
+      <section name="themes" type="DevExpress.Web.ASPxClasses.ThemesConfigurationSection, DevExpress.Web.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false" />
+      <section name="compression" type="DevExpress.Web.ASPxClasses.CompressionConfigurationSection, DevExpress.Web.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false" />
+      <section name="settings" type="DevExpress.Web.ASPxClasses.SettingsConfigurationSection, DevExpress.Web.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false" />
+      <section name="errors" type="DevExpress.Web.ASPxClasses.ErrorsConfigurationSection, DevExpress.Web.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false" />
+    </sectionGroup>
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
+  </configSections>
+  <appSettings>
+    <add key="gpb.t24.host" value="10.0.2.202" />
+    <add key="gpb.t24.port" value="1521" />
+    <add key="gpb.t24.servicename" value="T24TEST" />
+    <add key="gpb.t24.userid" value="TEST02" />
+    <add key="gpb.t24.pwd" value="TEST0624" />
+    <add key="gbp.t24.schema" value="bcob1127" />
+    <!--<add key="gpb.t24.host" value="10.0.2.200"/>
+    <add key="gpb.t24.port" value="1521"/>
+    <add key="gpb.t24.servicename" value="T24DATA"/>
+    <add key="gpb.t24.userid" value="t24ebank"/>
+    <add key="gpb.t24.pwd" value="ebankt24"/>
+    <add key="gbp.t24.schema" value="t24prod"/>-->
+    <add key="StartDate" value="11/20/2015 00:00:00" />
+    <add key="EndDate" value="03/27/2016 23:59:59" />
+    <add key="StartLiXi" value="11/20/2015 00:00:00" />
+    <add key="EndLiXi" value="02/19/2016 23:59:59" />
+    <add key="log4net.Internal.Debug" value="true" />
+  </appSettings>
+  <connectionStrings>
+    <add name="KhuyenMaiEntities" connectionString="metadata=res://*/KhuyenMaiDataModel.csdl|res://*/KhuyenMaiDataModel.ssdl|res://*/KhuyenMaiDataModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=TRANMANH-PC\SQL2008EXPRESS;initial catalog=KhuyenMai;user id=khuyenmai;password=khuyenmai@1a2b3c;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="EbankingR9LIVEEntities" connectionString="metadata=res://*/EBankingDataModel.csdl|res://*/EBankingDataModel.ssdl|res://*/EBankingDataModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=TRANMANH-PC\SQL2008EXPRESS;initial catalog=EbankingR9LIVE;user id=gib;password=gib@123456;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="GIB_R9Entities" connectionString="metadata=res://*/GIBDataModel.csdl|res://*/GIBDataModel.ssdl|res://*/GIBDataModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=10.1.1.248;initial catalog=TRANMANH-PC\SQL2008EXPRESS;user id=gib;password=gib@123456;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <!--<add name="KhuyenMaiEntities" connectionString="metadata=res://*/KhuyenMaiDataModel.csdl|res://*/KhuyenMaiDataModel.ssdl|res://*/KhuyenMaiDataModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=10.1.2.51;initial catalog=KhuyenMai;user id=khuyenmai;password=khuyenmai@1a2b3c;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="EbankingR9LIVEEntities" connectionString="metadata=res://*/EBankingDataModel.csdl|res://*/EBankingDataModel.ssdl|res://*/EBankingDataModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=10.1.2.165;initial catalog=EBANKING_ATM;user id=eBanking;password=eBanking!@#;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="GIB_R9Entities" connectionString="metadata=res://*/GIBDataModel.csdl|res://*/GIBDataModel.ssdl|res://*/GIBDataModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=10.1.2.165;initial catalog=GIB_ATM;user id=eBanking;password=eBanking!@#;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />-->
+  </connectionStrings>
+  <log4net debug="true">
+    <appender name="RollingLogFileAppender" type="log4net.Appender.RollingFileAppender">
+      <file value="C:\\Promotion_LOG\\" />
+      <appendToFile value="true" />
+      <rollingStyle value="Composite" />
+      <maxSizeRollBackups value="10" />
+      <maximumFileSize value="10MB" />
+      <datePattern value="yyyyMMdd.lo\g" />
+      <staticLogFileName value="false" />
+      <encoding value="utf-8" />
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%d [%thread] %-5level %logger %30M - %message%newline" />
+      </layout>
+    </appender>
+    <appender name="SmtpAppender" type="log4net.Appender.SmtpAppender">
+      <threshold value="ERROR" />
+      <to value="huynhtien.nguyen@gpbank.com.vn" />
+      <from value="ebanking@gpbank.com.vn" />
+      <subject value="Promotion_TEST" />
+      <smtpHost value="ho-mail02.g-bank.com.vn" />
+      <bufferSize value="1" />
+      <lossy value="false" />
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%newline%date [%thread] %-5level %logger [%property{NDC}] - %message%newline%newline%newline" />
+      </layout>
+    </appender>
+    <root>
+      <level value="ALL" />
+      <appender-ref ref="RollingLogFileAppender" />
+      <appender-ref ref="SmtpAppender" />
+    </root>
+  </log4net>
+  <system.web>
+    <authentication mode="None" />
+    <compilation debug="true" targetFramework="4.0">
+      <assemblies>
+        <add assembly="DevExpress.XtraReports.v13.1.Web, Version=13.1.8.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+        <add assembly="DevExpress.Web.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+        <add assembly="DevExpress.XtraReports.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+        <add assembly="DevExpress.Data.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+        <add assembly="DevExpress.Printing.v13.1.Core, Version=13.1.8.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+        <add assembly="System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" />
+        <add assembly="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" />
+        <add assembly="DevExpress.Web.ASPxThemes.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+      </assemblies>
+    </compilation>
+    <httpRuntime />
+    <membership>
+      <providers>
+        <!--
+        ASP.NET Membership is disabled in this template. Please visit the following link http://go.microsoft.com/fwlink/?LinkId=301889 to learn about the ASP.NET Membership support in this template
+        -->
+        <clear />
+      </providers>
+    </membership>
+    <profile>
+      <providers>
+        <!--
+        ASP.NET Membership Profile is disabled in this template. Please visit the following link http://go.microsoft.com/fwlink/?LinkId=301889 to learn about the ASP.NET Membership support in this template
+        -->
+        <clear />
+      </providers>
+    </profile>
+    <pages controlRenderingCompatibilityVersion="4.0">
+      <namespaces>
+        <!--<add namespace="System.Web.Optimization"/>-->
+      </namespaces>
+      <controls>
+        <!--<add tagPrefix="webopt" assembly="Microsoft.AspNet.Web.Optimization.WebForms" namespace="Microsoft.AspNet.Web.Optimization.WebForms"/>-->
+      </controls>
+    </pages>
+    <roleManager>
+      <!--
+          ASP.NET Membership Role is disabled in this template. Please visit the following link http://go.microsoft.com/fwlink/?LinkId=301889 to learn about the ASP.NET Membership support in this template
+        -->
+      <providers>
+        <clear />
+      </providers>
+    </roleManager>
+    <!--
+            If you are deploying to a cloud environment that has multiple web server instances,
+            you should change session state mode from "InProc" to "Custom". In addition,
+            change the connection string named "DefaultConnection" to connect to an instance
+            of SQL Server (including SQL Azure and SQL  Compact) instead of to SQL Server Express.
+      -->
+    <sessionState mode="InProc" customProvider="DefaultSessionProvider">
+      <providers>
+        <add name="DefaultSessionProvider" type="System.Web.Providers.DefaultSessionStateProvider, System.Web.Providers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" connectionStringName="DefaultConnection" />
+      </providers>
+    </sessionState>
+    <httpModules>
+      <add type="DevExpress.Web.ASPxClasses.ASPxHttpHandlerModule, DevExpress.Web.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" name="ASPxHttpHandlerModule" />
+    </httpModules>
+    <httpHandlers>
+      <add type="DevExpress.Web.ASPxClasses.ASPxHttpHandlerModule, DevExpress.Web.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" verb="GET" path="DX.ashx" validate="false" />
+    </httpHandlers>
+  </system.web>
+  <system.webServer>
+    <modules>
+      <remove name="FormsAuthentication" />
+      <add type="DevExpress.Web.ASPxClasses.ASPxHttpHandlerModule, DevExpress.Web.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" name="ASPxHttpHandlerModule" />
+    </modules>
+    <validation validateIntegratedModeConfiguration="false" />
+    <handlers>
+      <add type="DevExpress.Web.ASPxClasses.ASPxHttpHandlerModule, DevExpress.Web.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" verb="GET" path="DX.ashx" name="ASPxHttpHandlerModule" preCondition="integratedMode" />
+    </handlers>
+  </system.webServer>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="log4net" publicKeyToken="669e0ddf0bb1aa2a" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.2.13.0" newVersion="1.2.13.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="EntityFramework" publicKeyToken="b77a5c561934e089" />
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
+      <parameters>
+        <parameter value="mssqllocaldb" />
+      </parameters>
+    </defaultConnectionFactory>
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+  <system.serviceModel>
+    <bindings>
+      <basicHttpBinding>
+        <binding name="BasicHttpBinding_IService" maxBufferPoolSize="2147483647" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647" textEncoding="utf-8" transferMode="Buffered" useDefaultWebProxy="true" messageEncoding="Text">
+          <readerQuotas maxDepth="32" maxStringContentLength="8192" maxArrayLength="16384" maxBytesPerRead="4096" maxNameTableCharCount="16384" />
+          <security mode="None">
+            <transport clientCredentialType="None" proxyCredentialType="None" realm="" />
+            <message clientCredentialType="UserName" algorithmSuite="Default" />
+          </security>
+        </binding>
+        <binding name="ep1" closeTimeout="00:01:00" openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00" allowCookies="false" bypassProxyOnLocal="false" hostNameComparisonMode="StrongWildcard" maxBufferPoolSize="2147483647" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647" textEncoding="utf-8" transferMode="Buffered" useDefaultWebProxy="true" messageEncoding="Text">
+          <readerQuotas maxDepth="32" maxStringContentLength="8192" maxArrayLength="16384" maxBytesPerRead="4096" maxNameTableCharCount="16384" />
+          <security mode="None">
+            <transport clientCredentialType="None" proxyCredentialType="None" realm="" />
+            <message clientCredentialType="UserName" algorithmSuite="Default" />
+          </security>
+        </binding>
+      </basicHttpBinding>
+      <netTcpBinding>
+        <binding name="BasicNetTcpBinding_IService" closeTimeout="00:10:00" openTimeout="00:10:00" receiveTimeout="00:10:00" sendTimeout="00:10:00" transactionFlow="false" transferMode="Streamed" transactionProtocol="OleTransactions" hostNameComparisonMode="StrongWildcard" listenBacklog="10" maxBufferPoolSize="2147483647" maxBufferSize="2147483647" maxConnections="10" maxReceivedMessageSize="2147483647">
+          <readerQuotas maxDepth="32" maxStringContentLength="8192" maxArrayLength="16384" maxBytesPerRead="4096" maxNameTableCharCount="16384" />
+          <reliableSession ordered="true" inactivityTimeout="00:10:00" enabled="false" />
+          <security mode="None">
+            <transport clientCredentialType="Windows" protectionLevel="EncryptAndSign" />
+            <message clientCredentialType="Windows" />
+          </security>
+        </binding>
+      </netTcpBinding>
+    </bindings>
+    <client>
+      <endpoint address="http://10.1.1.246:8888/DataMiningServer" binding="basicHttpBinding" bindingConfiguration="ep1" contract="T24DataMining.IDataMining" name="ep1" />
+      <endpoint address="net.tcp://10.1.1.246:2461/eCS" binding="netTcpBinding" bindingConfiguration="BasicNetTcpBinding_IService" contract="eCS.IeCS" name="BasicNetTcpBinding_IService" />
+      <endpoint address="net.tcp://10.1.1.246:2461/eCS" binding="netTcpBinding" bindingConfiguration="BasicNetTcpBinding_IService" contract="eCS.IeCSPayment" name="BasicNetTcpBinding_IService" />
+      <endpoint address="net.tcp://10.1.1.246:2461/eCS" binding="netTcpBinding" bindingConfiguration="BasicNetTcpBinding_IService" contract="eCS.IeCSAdmin" name="BasicNetTcpBinding_IService" />
+      <endpoint address="net.tcp://10.1.1.246:2461/eCS" binding="netTcpBinding" bindingConfiguration="BasicNetTcpBinding_IService" contract="eCS.IeCSCardService" name="BasicNetTcpBinding_IService" />
+      <endpoint address="net.tcp://10.1.1.246:2461/eCS" binding="netTcpBinding" bindingConfiguration="BasicNetTcpBinding_IService" contract="eCS.IeCSLog" name="BasicNetTcpBinding_IService" />
+      <endpoint address="net.tcp://10.1.1.246:2461/eCS" binding="netTcpBinding" bindingConfiguration="BasicNetTcpBinding_IService" contract="eCS.IeCSSaving" name="BasicNetTcpBinding_IService" />
+      <endpoint address="net.tcp://10.1.1.246:2461/eCS" binding="netTcpBinding" bindingConfiguration="BasicNetTcpBinding_IService" contract="eCS.IeCSVas" name="BasicNetTcpBinding_IService" />
+    </client>
+  </system.serviceModel>
+  <devExpress>
+    <themes enableThemesAssembly="true" styleSheetTheme="" theme="" customThemeAssemblies="" />
+    <compression enableHtmlCompression="false" enableCallbackCompression="true" enableResourceCompression="true" enableResourceMerging="true" />
+    <settings doctypeMode="Xhtml" rightToLeft="false" />
+    <errors callbackErrorRedirectUrl="" />
+  </devExpress>
+</configuration>

@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PromotionModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="PromotionEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BLACKLIST_CUSTOMER" EntityType="PromotionModel.BLACKLIST_CUSTOMER" />
+    <EntitySet Name="COMPANies" EntityType="PromotionModel.COMPANY" />
+    <EntitySet Name="DAOs" EntityType="PromotionModel.DAO" />
+    <EntitySet Name="DAO_COMPANY" EntityType="PromotionModel.DAO_COMPANY" />
+    <EntitySet Name="DelSerials" EntityType="PromotionModel.DelSerial" />
+    <EntitySet Name="LiXis" EntityType="PromotionModel.LiXi" />
+    <EntitySet Name="LuckySerials" EntityType="PromotionModel.LuckySerial" />
+    <EntitySet Name="Permisions" EntityType="PromotionModel.Permision" />
+    <EntitySet Name="SerialByMonths" EntityType="PromotionModel.SerialByMonth" />
+    <EntitySet Name="SerialByWeeks" EntityType="PromotionModel.SerialByWeek" />
+    <EntitySet Name="SerialMaxes" EntityType="PromotionModel.SerialMax" />
+    <EntitySet Name="SerialResults" EntityType="PromotionModel.SerialResult" />
+    <EntitySet Name="STAFF_USER" EntityType="PromotionModel.STAFF_USER" />
+    <EntitySet Name="Users" EntityType="PromotionModel.User" />
+  </EntityContainer>
+  <EntityType Name="BLACKLIST_CUSTOMER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="CUSTOMER_ID" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="HO_TEN" MaxLength="300" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="COMPANY">
+    <Key>
+      <PropertyRef Name="COMPANY_CODE" />
+    </Key>
+    <Property Type="String" Name="COMPANY_CODE" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COMPANY_NAME" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NAME_ADDRESS" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MNEMONIC" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="LANGUAGE_CODE" MaxLength="2" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="DAO">
+    <Key>
+      <PropertyRef Name="DAO_CODE" />
+    </Key>
+    <Property Type="String" Name="DAO_CODE" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREA" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DELIVERY_POINT" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DEPT_LEVEL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DEPT_PARENT" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DEPARTMENT_LCL" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="DAO_COMPANY">
+    <Key>
+      <PropertyRef Name="DAO_CODE" />
+      <PropertyRef Name="COMPANY_CODE" />
+    </Key>
+    <Property Type="String" Name="DAO_CODE" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COMPANY_CODE" Nullable="false" MaxLength="11" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="DelSerial">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="book_number" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Serial" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="SavedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="input_time" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="LiXi">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="CIF" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="AccountNumber" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CustomerName" MaxLength="254" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CMND" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Telephone" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Address" MaxLength="254" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CoCode" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="Created" Precision="3" />
+    <Property Type="Boolean" Name="IsUsed" />
+    <Property Type="String" Name="DAO_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="DEPT_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="DeletedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="Deleted" Precision="3" />
+  </EntityType>
+  <EntityType Name="LuckySerial">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="book_number" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="customer_id" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="seq" Nullable="false" />
+    <Property Type="String" Name="SavedBy" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="input_time" Precision="3" />
+  </EntityType>
+  <EntityType Name="Permision">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Byte" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Permision1" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Note" MaxLength="254" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="UserID" />
+  </EntityType>
+  <EntityType Name="SerialByMonth">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="Period" Nullable="false" />
+    <Property Type="Double" Name="VND" Nullable="false" />
+    <Property Type="Double" Name="USD" Nullable="false" />
+    <Property Type="Int32" Name="SoPhieu" Nullable="false" />
+    <Property Type="DateTime" Name="effect_date" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="SerialByWeek">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="Period" Nullable="false" />
+    <Property Type="Double" Name="VND" Nullable="false" />
+    <Property Type="Double" Name="USD" Nullable="false" />
+    <Property Type="Int32" Name="SoPhieu" Nullable="false" />
+    <Property Type="DateTime" Name="effect_date" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="SerialMax">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="MaxSerial" Nullable="false" />
+    <Property Type="DateTime" Name="input_time" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="SerialResult">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="customer_id" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="customer_name" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CMND" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="tel" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="book_number" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Double" Name="amount" />
+    <Property Type="Int32" Name="kyhan" Nullable="false" />
+    <Property Type="String" Name="currency" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Serials" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="Input_time" Precision="3" />
+    <Property Type="String" Name="SavedBy" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Sector" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="EFFECT_DATE" Precision="3" />
+    <Property Type="DateTime" Name="MATURITY_DATE" Precision="3" />
+    <Property Type="String" Name="ACCT_NUM" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CO_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="TERM" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Times" />
+    <Property Type="Int32" Name="cMoney" />
+    <Property Type="Int32" Name="Seq" />
+    <Property Type="String" Name="DeletedBy" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsUsed" />
+    <Property Type="DateTime" Name="DeletedDate" Precision="3" />
+    <Property Type="String" Name="DAO_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="DEPT_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="STAFF_USER">
+    <Key>
+      <PropertyRef Name="USERNAME" />
+    </Key>
+    <Property Type="String" Name="USERNAME" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DAO_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DEPT_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="HO_TEN" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PHONG_BAN" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="RANK" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IS_USE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="REP_DEPARTMENT" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="T24_USERID" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACCOUNT_OFFICER" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="UserName" MaxLength="254" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FullName" MaxLength="254" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="Created" Precision="3" />
+  </EntityType>
+</Schema>

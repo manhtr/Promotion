@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{207CBABD-1F69-40F0-B4A7-876AB67AC277}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Promotion.DataModel</RootNamespace>
+    <AssemblyName>Promotion.DataModel</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\lib\log4net\4.0\release\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLACKLIST_CUSTOMER.cs">
+      <DependentUpon>PromotionDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BLACKLIST_CUSTOMER_BO.cs" />
+    <Compile Include="COMPANY.cs">
+      <DependentUpon>PromotionDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAO.cs">
+      <DependentUpon>PromotionDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAO_COMPANY.cs">
+      <DependentUpon>PromotionDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAO_COMPANY_BO.cs" />
+    <Compile Include="DelSerial.cs">
+      <DependentUpon>PromotionDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DelSerial_BO.cs" />
+    <Compile Include="LiXi.cs">
+      <DependentUpon>PromotionDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LiXi_BO.cs" />
+    <Compile Include="LuckySerial.cs">
+      <DependentUpon>PromotionDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LuckySerial_BO.cs" />
+    <Compile Include="Permision.cs">
+      <DependentUpon>PromotionDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PromotionDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PromotionDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PromotionDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PromotionDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PromotionDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PromotionDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerialByMonth.cs">
+      <DependentUpon>PromotionDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SerialByMonth_BO.cs" />
+    <Compile Include="SerialByWeek.cs">
+      <DependentUpon>PromotionDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SerialByWeek_BO.cs" />
+    <Compile Include="SerialMax.cs">
+      <DependentUpon>PromotionDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SerialMax_BO.cs" />
+    <Compile Include="SerialResult.cs">
+      <DependentUpon>PromotionDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SerialResult_BO.cs" />
+    <Compile Include="STAFF_USER.cs">
+      <DependentUpon>PromotionDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STAFF_USER_BO.cs" />
+    <Compile Include="COMPANY_BO.cs" />
+    <Compile Include="DAO_BO.cs" />
+    <Compile Include="User.cs">
+      <DependentUpon>PromotionDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User_BO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="PromotionDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PromotionDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="PromotionDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PromotionDataModel.edmx</DependentUpon>
+      <LastGenOutput>PromotionDataModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="PromotionDataModel.edmx.diagram">
+      <DependentUpon>PromotionDataModel.edmx</DependentUpon>
+    </None>
+    <None Include="PromotionDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PromotionDataModel.edmx</DependentUpon>
+      <LastGenOutput>PromotionDataModel.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

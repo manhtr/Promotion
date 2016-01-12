@@ -1,0 +1,4 @@
+D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\GPPromotion.Constants\bin\Debug\Promotion.Constants.dll
+D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\GPPromotion.Constants\bin\Debug\Promotion.Constants.pdb
+D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\GPPromotion.Constants\obj\Debug\Promotion.Constants.dll
+D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\GPPromotion.Constants\obj\Debug\Promotion.Constants.pdb

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DataMining" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://10.1.1.246:8888/DataMiningServer?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://10.1.1.246:8888/DataMiningServer?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://10.1.1.246:8888/DataMiningServer?xsd=xsd2" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IDataMining_Connect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Connect" />
+  </wsdl:message>
+  <wsdl:message name="IDataMining_Connect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataMining_ExecSQL_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExecSQL" />
+  </wsdl:message>
+  <wsdl:message name="IDataMining_ExecSQL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExecSQLResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataMining_ExecSQLWithRange_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExecSQLWithRange" />
+  </wsdl:message>
+  <wsdl:message name="IDataMining_ExecSQLWithRange_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExecSQLWithRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataMining_ExecOracleCommand_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExecOracleCommand" />
+  </wsdl:message>
+  <wsdl:message name="IDataMining_ExecOracleCommand_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExecOracleCommandResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataMining_GetCurrentAccountByCustomerID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentAccountByCustomerID" />
+  </wsdl:message>
+  <wsdl:message name="IDataMining_GetCurrentAccountByCustomerID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentAccountByCustomerIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataMining_GetAllAccountByCustomerID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAccountByCustomerID" />
+  </wsdl:message>
+  <wsdl:message name="IDataMining_GetAllAccountByCustomerID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAccountByCustomerIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataMining_GetAZByCustomerID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAZByCustomerID" />
+  </wsdl:message>
+  <wsdl:message name="IDataMining_GetAZByCustomerID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAZByCustomerIDResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IDataMining">
+    <wsdl:operation name="Connect">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataMining/Connect" message="tns:IDataMining_Connect_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataMining/ConnectResponse" message="tns:IDataMining_Connect_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecSQL">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataMining/ExecSQL" message="tns:IDataMining_ExecSQL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataMining/ExecSQLResponse" message="tns:IDataMining_ExecSQL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecSQLWithRange">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataMining/ExecSQLWithRange" message="tns:IDataMining_ExecSQLWithRange_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataMining/ExecSQLWithRangeResponse" message="tns:IDataMining_ExecSQLWithRange_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecOracleCommand">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataMining/ExecOracleCommand" message="tns:IDataMining_ExecOracleCommand_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataMining/ExecOracleCommandResponse" message="tns:IDataMining_ExecOracleCommand_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentAccountByCustomerID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataMining/GetCurrentAccountByCustomerID" message="tns:IDataMining_GetCurrentAccountByCustomerID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataMining/GetCurrentAccountByCustomerIDResponse" message="tns:IDataMining_GetCurrentAccountByCustomerID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAccountByCustomerID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataMining/GetAllAccountByCustomerID" message="tns:IDataMining_GetAllAccountByCustomerID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataMining/GetAllAccountByCustomerIDResponse" message="tns:IDataMining_GetAllAccountByCustomerID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAZByCustomerID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataMining/GetAZByCustomerID" message="tns:IDataMining_GetAZByCustomerID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataMining/GetAZByCustomerIDResponse" message="tns:IDataMining_GetAZByCustomerID_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ep1" type="tns:IDataMining">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Connect">
+      <soap:operation soapAction="http://tempuri.org/IDataMining/Connect" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecSQL">
+      <soap:operation soapAction="http://tempuri.org/IDataMining/ExecSQL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecSQLWithRange">
+      <soap:operation soapAction="http://tempuri.org/IDataMining/ExecSQLWithRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecOracleCommand">
+      <soap:operation soapAction="http://tempuri.org/IDataMining/ExecOracleCommand" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentAccountByCustomerID">
+      <soap:operation soapAction="http://tempuri.org/IDataMining/GetCurrentAccountByCustomerID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAccountByCustomerID">
+      <soap:operation soapAction="http://tempuri.org/IDataMining/GetAllAccountByCustomerID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAZByCustomerID">
+      <soap:operation soapAction="http://tempuri.org/IDataMining/GetAZByCustomerID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DataMining">
+    <wsdl:port name="ep1" binding="tns:ep1">
+      <soap:address location="http://10.1.1.246:8888/DataMiningServer" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

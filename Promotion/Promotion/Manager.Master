@@ -1,0 +1,170 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Manager.master.cs" Inherits="Promotion.Manager" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=9" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Nhom 1</title>
+
+    <%--<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />--%>
+    <link href="~/Content/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+    <link href="~/Content/mos-style.css" rel="stylesheet" />
+    <link href="~/Content/jquery.ui.1.10.3.ie.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui-1.10.3.theme.css" rel="stylesheet" />
+    <link href="~/Content/smoothness/jquery-ui-1.9.1.custom.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        function InitPage() {
+            var imgs = new Array();
+            imgs[0] = "../img/collapse_up.png";
+            imgs[1] = "../img/collapse_down.png";
+            $("#main_img_user_info_collapse").click(function () {
+                if ($(this).attr("src") == imgs[0]) {
+                    $(this).attr("src", imgs[1]);
+                    $("#tbl_user_info").hide("slow");
+                }
+                else {
+                    $(this).attr("src", imgs[0]);
+                    $("#tbl_user_info").show();
+                }
+            });
+            $("#main_img_representer_collapse").click(function () {
+                if ($(this).attr("src") == imgs[0]) {
+                    $(this).attr("src", imgs[1]);
+                    $("#tbl_representer_info").hide("slow");
+                }
+                else {
+                    $(this).attr("src", imgs[0]);
+                    $("#tbl_representer_info").show();
+                }
+            });
+
+            $("#main_img_receiver_collapse").click(function () {
+                if ($(this).attr("src") == imgs[0]) {
+                    $(this).attr("src", imgs[1]);
+                    $("#tbl_receiver_info").hide("slow");
+                }
+                else {
+                    $(this).attr("src", imgs[0]);
+                    $("#tbl_receiver_info").show();
+                }
+            });
+
+            $("#main_img_ben_collapse").click(function () {
+                if ($(this).attr("src") == imgs[0]) {
+                    $(this).attr("src", imgs[1]);
+                    $("#tbl_ben_info").hide("slow");
+                }
+                else {
+                    $(this).attr("src", imgs[0]);
+                    $("#tbl_ben_info").show();
+                }
+            });
+
+            //reset update progress width of promotion 2015
+            var up_header_width = $("#header").width();
+            $("#main_UpdateProgress1").width(up_header_width);
+        }
+    </script>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial;
+        }
+
+        .modal {
+            position: fixed;
+            z-index: 999;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            margin: 0;
+            background-color: Black;
+            filter: alpha(opacity=30);
+            opacity: 0.3;
+            -moz-opacity: 0.3;
+        }
+
+        .center {
+            z-index: 1000;
+            margin: 300px auto;
+            padding: 10px;
+            width: 130px;
+            background-color: White;
+            border-radius: 10px;
+            filter: alpha(opacity=100);
+            opacity: 1;
+            -moz-opacity: 1;
+        }
+
+            .center img {
+                height: 30px;
+                width: 30px;
+            }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Path="Scripts/jquery-1.11.3.min.js" />
+                <asp:ScriptReference Path="Scripts/jquery-ui-1.10.3.custom.min.js" />
+                <asp:ScriptReference Path="Scripts/jquery.maskedinput.js" />
+                <asp:ScriptReference Path="Scripts/SpellNumber.js" />
+                <asp:ScriptReference Path="Scripts/autoNumeric-1.9.8.js" />
+                <asp:ScriptReference Path="Scripts/footable.min.js" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+        <script type="text/javascript">
+            function pageLoad() {
+                InitPage();
+            }
+        </script>
+        <div id="header">
+            <div class="inHeader">
+                <div class="mosAdmin">
+                    <asp:Label ID="lblWelcome" runat="server" Text="Xin chào,"></asp:Label>
+                    <asp:LinkButton ID="lbtnLogout" runat="server" OnClick="lbtnLogout_Click">Đăng xuất</asp:LinkButton>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+        <div id="wrapper">
+            <div id="leftBar">
+                <ul>
+                    <li>
+                        <a href="<%=ResolveUrl("~/Default.aspx") %>" target="_self" title="Trang chủ">Trang chủ</a>
+                    </li>
+                    <li><a href="<%=ResolveUrl("~/Serial/XoaMaDuThuong.aspx") %>" target="_self" title="Xóa mã dự thưởng">Xóa mã dự thưởng</a>
+                    </li>
+                    <li><a href="<%=ResolveUrl("~/Serial/BaoCaoCapMa.aspx") %>" target="_self" title="Báo cáo cấp mã dự thưởng">Báo cáo cấp mã dự thưởng</a>
+                    </li>
+                    <li><a href="<%=ResolveUrl("~/LiXi/XoaLiXi.aspx") %>" target="_self" title="Xóa cấp Lì xì">Xóa cấp Lì xì</a>
+                    </li>
+                    <li><a href="<%=ResolveUrl("~/LiXi/BaoCaoCapLiXi.aspx") %>" target="_self" title="Báo cáo cấp Lì xì">Báo cáo cấp Lì xì</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="rightContent">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+            <div id="footer">
+                &copy; <%: DateTime.Now.Year %> - Bản quyền thuộc về ...
+            </div>
+        </div>
+    </form>
+</body>
+</html>
