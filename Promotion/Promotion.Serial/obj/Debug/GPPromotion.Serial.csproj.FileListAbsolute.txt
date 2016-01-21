@@ -1,2 +1,0 @@
-D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\GPPromotion.Serial\obj\Debug\GPPromotion.Serial.csprojResolveAssemblyReference.cache
-D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\Promotion\GPPromotion.Serial\obj\Debug\GPPromotion.Serial.csprojResolveAssemblyReference.cache

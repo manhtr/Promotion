@@ -1,4 +1,0 @@
-D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\GPPromotion.Commons\bin\Debug\GPPromotion.Commons.dll
-D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\GPPromotion.Commons\bin\Debug\GPPromotion.Commons.pdb
-D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\GPPromotion.Commons\obj\Debug\GPPromotion.Commons.dll
-D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\GPPromotion.Commons\obj\Debug\GPPromotion.Commons.pdb

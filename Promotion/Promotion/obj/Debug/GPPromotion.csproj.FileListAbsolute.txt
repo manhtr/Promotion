@@ -1,8 +1,0 @@
-D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\GPPromotion\obj\Debug\GPPromotion.csprojResolveAssemblyReference.cache
-D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\GPPromotion\obj\Debug\GPPromotion.Serial.rptMaSoDuThuong.resources
-D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\GPPromotion\obj\Debug\GPPromotion.csproj.GenerateResource.Cache
-D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\GPPromotion\obj\Debug\GPPromotion.dll.licenses
-D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\Promotion\GPPromotion\obj\Debug\GPPromotion.csprojResolveAssemblyReference.cache
-D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\Promotion\GPPromotion\obj\Debug\GPPromotion.Serial.rptMaSoDuThuong.resources
-D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\Promotion\GPPromotion\obj\Debug\GPPromotion.csproj.GenerateResource.Cache
-D:\MANHTR\CaoHoc\TaiLieu\Cong nghe phan mem nang cao\Projects\Promotion\Promotion\GPPromotion\obj\Debug\GPPromotion.dll.licenses
