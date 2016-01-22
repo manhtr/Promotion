@@ -10,15 +10,18 @@
         <EntityTypeShape EntityType="PromotionModel.DAO" Width="1.5" PointX="4.25" PointY="21" />
         <EntityTypeShape EntityType="PromotionModel.DAO_COMPANY" Width="1.5" PointX="1.375" PointY="17.75" />
         <EntityTypeShape EntityType="PromotionModel.DelSerial" Width="1.5" PointX="3.5" PointY="18" />
-        <EntityTypeShape EntityType="PromotionModel.LiXi" Width="1.5" PointX="7.125" PointY="20.25" />
+        <EntityTypeShape EntityType="PromotionModel.LiXi" Width="1.5" PointX="7.375" PointY="20.25" />
         <EntityTypeShape EntityType="PromotionModel.LuckySerial" Width="1.5" PointX="10.125" PointY="21.75" />
         <EntityTypeShape EntityType="PromotionModel.Permision" Width="1.5" PointX="6" PointY="17.75" />
         <EntityTypeShape EntityType="PromotionModel.SerialByMonth" Width="1.5" PointX="8.5" PointY="17.625" />
         <EntityTypeShape EntityType="PromotionModel.SerialByWeek" Width="1.5" PointX="10.625" PointY="17.625" />
-        <EntityTypeShape EntityType="PromotionModel.SerialMax" Width="1.5" PointX="12" PointY="22" />
+        <EntityTypeShape EntityType="PromotionModel.SerialMax" Width="1.5" PointX="12" PointY="23.75" />
         <EntityTypeShape EntityType="PromotionModel.SerialResult" Width="1.5" PointX="14.25" PointY="17.875" />
         <EntityTypeShape EntityType="PromotionModel.STAFF_USER" Width="1.5" PointX="17.25" PointY="19.375" />
         <EntityTypeShape EntityType="PromotionModel.User" Width="1.5" PointX="20.25" PointY="20.875" />
+        <EntityTypeShape EntityType="PromotionModel.AZ_ACCOUNT" Width="1.5" PointX="3.75" PointY="23.25" />
+        <EntityTypeShape EntityType="PromotionModel.CUSTOMER" Width="1.5" PointX="12.5" PointY="17.875" />
+        <EntityTypeShape EntityType="PromotionModel.LOANS_AND_DEPOSITS" Width="1.5" PointX="9.625" PointY="24.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

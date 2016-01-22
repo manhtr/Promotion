@@ -39,5 +39,8 @@ namespace Promotion.DataModel
         public DbSet<SerialResult> SerialResults { get; set; }
         public DbSet<STAFF_USER> STAFF_USER { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<AZ_ACCOUNT> AZ_ACCOUNT { get; set; }
+        public DbSet<CUSTOMER> CUSTOMERs { get; set; }
+        public DbSet<LOANS_AND_DEPOSITS> LOANS_AND_DEPOSITS { get; set; }
     }
 }

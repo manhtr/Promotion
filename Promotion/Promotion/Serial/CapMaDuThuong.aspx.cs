@@ -14,18 +14,11 @@ namespace Promotion.Serial
         DateTime dtStartDate = DateTime.Parse(System.Configuration.ConfigurationManager.AppSettings["StartDate"]);
         DateTime dtEndDate = DateTime.Parse(System.Configuration.ConfigurationManager.AppSettings["EndDate"]);
 
-        private string strT24Host = "";
-        private string strT24Port = "";
-        private string strT24Service = "";
-        private string strT24Uid = "";
-        private string strT24Pwd = "";
-        private string strT24Schema = "";
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session[Constant.USERNAME] == null)
             {
-                Response.Redirect(Promotion.Commons.Common.GetRootRequest() + "Account/Login.aspx");
+                Response.Redirect(Commons.Common.GetRootRequest() + "Account/Login.aspx");
             }
             if (!IsPostBack)
             {
@@ -60,10 +53,10 @@ namespace Promotion.Serial
                         return;
                     }
 
-                    Promotion.Serial.SerialBook objSerialBook = (Promotion.Serial.SerialBook)Session[Constant.SERIAL_BOOK];
+                    Serial.SerialBook objSerialBook = (Serial.SerialBook)Session[Constant.SERIAL_BOOK];
                     if (objSerialBook != null)
                     {
-                        Promotion.Serial.Function objFunction = new Function();
+                        Serial.Function objFunction = new Function();
 
                         if (!objSerialBook.ThamGiaKM.ToUpper().Contains("TET VE LOC DEN"))
                         {
@@ -221,8 +214,8 @@ namespace Promotion.Serial
             ClearForm();
             Session[Constant.PHAN_HE] = lstradPhanHe.SelectedValue;
             hdfSoSo.Value = txtSoSo.Text.Trim();
-            Promotion.Serial.Function objFunction = new Function();
-            Promotion.Serial.SerialBook objSerialBook = objFunction.GetSerialBookResultByBookNumber(hdfSoSo.Value, dtStartDate, dtEndDate);
+            Function objFunction = new Function();
+            SerialBook objSerialBook = objFunction.GetSerialBookResultByBookNumber(hdfSoSo.Value, dtStartDate, dtEndDate);
             if (objSerialBook != null)
             {
                 //book is played.
@@ -241,14 +234,14 @@ namespace Promotion.Serial
                 cmdInphieu.Visible = true;
                 //write quayso result to session.
                 string strQuaysoSession = cm_strQuaysSoSession + "_" + Session[Constant.USERNAME].ToString();
-                Promotion.Serial.QuaySoBook oBook = ConvertSerialToQuaysoBook(objSerialBook);
+                QuaySoBook oBook = ConvertSerialToQuaysoBook(objSerialBook);
                 Session[strQuaysoSession] = oBook;
                 Session[Constant.SERIAL_BOOK] = objSerialBook;
             }
             else
             {
                 string strBookCategory = string.Empty;
-                objSerialBook = objFunction.GetSerialBookFromT24(hdfSoSo.Value, strT24Host, strT24Port, strT24Service, strT24Uid, strT24Pwd, strT24Schema, Session[Constant.PHAN_HE].ToString(), txtCIF.Text.Trim(), ref strBookCategory); // hdfSoSo.Value, Session["PHAN_HE"].ToString(), ref strBookCategory);
+                objSerialBook = objFunction.GetSerialBookFromT24(hdfSoSo.Value, Session[Constant.PHAN_HE].ToString(), txtCIF.Text.Trim(), ref strBookCategory);
 
                 if (objSerialBook == null)
                 {
@@ -327,11 +320,11 @@ namespace Promotion.Serial
                 }
             }
         }
-        private Promotion.Serial.QuaySoBook ConvertSerialToQuaysoBook(Promotion.Serial.SerialBook oSerialBook)
+        private Serial.QuaySoBook ConvertSerialToQuaysoBook(Serial.SerialBook oSerialBook)
         {
             if (oSerialBook != null)
             {
-                Promotion.Serial.QuaySoBook oBook = new Promotion.Serial.QuaySoBook();
+                Serial.QuaySoBook oBook = new Promotion.Serial.QuaySoBook();
                 oBook.ACCOUNT_NUMBER = oSerialBook.ACCOUNT_NUMBER;
                 oBook.Book_Number = oSerialBook.Book_Number;
                 oBook.BookType = oSerialBook.BookType;

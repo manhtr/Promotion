@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.WebControls;
 using DevExpress.Web;
-using Promotion.Commons;
-using Promotion.DataModel;
+//using Promotion.Commons;
+//using Promotion.DataModel;
 using log4net;
 
 namespace Promotion.Serial
@@ -21,7 +21,7 @@ namespace Promotion.Serial
             {
                 txtFrom.Text = dtStartDate.ToString("dd/MM/yyyy");
                 txtTo.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                if (Session[Constant.USERNAME] != null)
+                if (Session[Commons.Constant.USERNAME] != null)
                 {
                     BindBranch();
                 }
@@ -38,9 +38,9 @@ namespace Promotion.Serial
                 string strCoCode = e.GetValue("CO_CODE").ToString();
                 if (lbl != null && strCoCode != string.Empty)
                 {
-                    using (COMPANY_BO objT24_COMPANY_BO = new COMPANY_BO())
+                    using (DataModel.COMPANY_BO objT24_COMPANY_BO = new DataModel.COMPANY_BO())
                     {
-                        COMPANY objT24_COMPANY = objT24_COMPANY_BO.GetByCOMPANY_CODE(strCoCode);
+                        DataModel.COMPANY objT24_COMPANY = objT24_COMPANY_BO.GetByCOMPANY_CODE(strCoCode);
                         if (objT24_COMPANY != null)
                         {
                             lbl.Text = objT24_COMPANY.COMPANY_NAME;
@@ -78,7 +78,7 @@ namespace Promotion.Serial
                         string strSerials = e.GetValue("Serials").ToString();
                         if (!string.IsNullOrEmpty(strSerials))
                         {
-                            strSerials = Common.FormatSerial(strSerials.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries).ToList());
+                            strSerials = Commons.Common.FormatSerial(strSerials.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries).ToList());
                         }
 
                         lbl3.Text = strSerials;
@@ -109,7 +109,7 @@ namespace Promotion.Serial
                     string strSerials = e.GetValue("Serials").ToString();
                     if (!string.IsNullOrEmpty(strSerials))
                     {
-                        strSerials = Common.FormatSerial(strSerials.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries).ToList());
+                        strSerials = Commons.Common.FormatSerial(strSerials.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries).ToList());
                     }
 
                     e.TextValue = strSerials;
@@ -126,9 +126,9 @@ namespace Promotion.Serial
                 string strCoCode = e.GetValue("CO_CODE").ToString();
                 if (strCoCode != string.Empty)
                 {
-                    using (COMPANY_BO objT24_COMPANY_BO = new COMPANY_BO())
+                    using (DataModel.COMPANY_BO objT24_COMPANY_BO = new DataModel.COMPANY_BO())
                     {
-                        COMPANY objT24_COMPANY = objT24_COMPANY_BO.GetByCOMPANY_CODE(strCoCode);
+                        DataModel.COMPANY objT24_COMPANY = objT24_COMPANY_BO.GetByCOMPANY_CODE(strCoCode);
                         if (objT24_COMPANY != null)
                         {
                             e.TextValue = objT24_COMPANY.COMPANY_NAME;
@@ -239,9 +239,9 @@ namespace Promotion.Serial
                     }
                 }
 
-                using (Promotion.DataModel.SerialResult_BO objSerialResult_BO = new Promotion.DataModel.SerialResult_BO())
+                using (DataModel.SerialResult_BO objSerialResult_BO = new DataModel.SerialResult_BO())
                 {
-                    List<Promotion.DataModel.SerialResult> lstData = objSerialResult_BO.GetByCO_CODEAndInput_time(cboBranch.SelectedItem.Value, dtFrom, dtTo).ToList();
+                    List<DataModel.SerialResult> lstData = objSerialResult_BO.GetByCO_CODEAndInput_time(cboBranch.SelectedItem.Value, dtFrom, dtTo).ToList();
                     dxgvSerial.DataSource = lstData;
                     dxgvSerial.DataBind();
                 }
@@ -254,31 +254,31 @@ namespace Promotion.Serial
 
         private void BindBranch()
         {
-            using (COMPANY_BO objT24_COMPANY_BO = new COMPANY_BO())
+            using (DataModel.COMPANY_BO objT24_COMPANY_BO = new DataModel.COMPANY_BO())
             {
-                List<COMPANY> lstData = objT24_COMPANY_BO.GetAll().ToList();
-                foreach (COMPANY item in lstData)
+                List<DataModel.COMPANY> lstData = objT24_COMPANY_BO.GetAll().ToList();
+                foreach (DataModel.COMPANY item in lstData)
                 {
                     cboBranch.Items.Add(new ListItem(item.COMPANY_CODE + "-" + item.COMPANY_NAME, item.COMPANY_CODE));
                 }
                 cboBranch.Items.Insert(0, new ListItem("--Chọn chi nhánh--", string.Empty));
-                if (Session[Promotion.Commons.Constant.DAO_CODE] != null)
+                if (Session[Commons.Constant.DAO_CODE] != null)
                 {
                     cboBranch.ClearSelection();
-                    if (cboBranch.Items.FindByValue(Session[Promotion.Commons.Constant.DAO_CODE].ToString()) != null)
+                    if (cboBranch.Items.FindByValue(Session[Commons.Constant.DAO_CODE].ToString()) != null)
                     {
-                        cboBranch.Items.FindByValue(Session[Promotion.Commons.Constant.DAO_CODE].ToString()).Selected = true;
+                        cboBranch.Items.FindByValue(Session[Commons.Constant.DAO_CODE].ToString()).Selected = true;
                     }
                 }
-                using (Promotion.DataModel.User_BO objUser_BO = new Promotion.DataModel.User_BO())
+                using (DataModel.User_BO objUser_BO = new DataModel.User_BO())
                 {
-                    Promotion.DataModel.User objUser = objUser_BO.GetByUserName(Session[Promotion.Commons.Constant.USERNAME].ToString());
+                    DataModel.User objUser = objUser_BO.GetByUserName(Session[Commons.Constant.USERNAME].ToString());
                     if (objUser != null && objUser.Permisions != null)
                     {
                         bool hasPer = false;
-                        foreach (Promotion.DataModel.Permision item in objUser.Permisions)
+                        foreach (DataModel.Permision item in objUser.Permisions)
                         {
-                            if (item != null && item.Permision1 == Constant.PERMISION_ADMIN)
+                            if (item != null && item.Permision1 == Commons.Constant.PERMISION_ADMIN)
                             {
                                 hasPer = true;
                                 break;

@@ -20,21 +20,21 @@
                 </td>
             </tr>
             <tr>
-                <td>Đến ngày:
+                <td style="width: 20%">Đến ngày:
                 </td>
                 <td>
                     <asp:TextBox ID="txtTo" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>
-                <td>Chi nhánh:
+                <td style="width: 20%">Chi nhánh:
                 </td>
                 <td>
                     <asp:DropDownList ID="cboBranch" runat="server" AutoPostBack="true" Enabled="false" OnSelectedIndexChanged="cboBranch_SelectedIndexChanged"></asp:DropDownList>
                 </td>
             </tr>
             <tr>
-                <td></td>
+                <td style="width: 20%"></td>
                 <td>
                     <asp:Button ID="cmdSearch" runat="server" Text="Tìm kiếm" BackColor="#0E4E95" ForeColor="White" OnClick="cmdSearch_Click" />
                 </td>

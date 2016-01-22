@@ -141,7 +141,7 @@
             <div id="leftBar">
                 <ul>
                     <li>
-                        <a href="<%=ResolveUrl("~/Default.aspx") %>" target="_self" title="Trang chủ">Trang chủ</a>
+                        <a href="<%=ResolveUrl("~/Manager.aspx") %>" target="_self" title="Trang chủ">Trang chủ</a>
                     </li>
                     <li><a href="<%=ResolveUrl("~/Serial/XoaMaDuThuong.aspx") %>" target="_self" title="Xóa mã dự thưởng">Xóa mã dự thưởng</a>
                     </li>

@@ -17,7 +17,5 @@ namespace Promotion.DataModel
         public string COMPANY_CODE { get; set; }
         public string COMPANY_NAME { get; set; }
         public string NAME_ADDRESS { get; set; }
-        public string MNEMONIC { get; set; }
-        public string LANGUAGE_CODE { get; set; }
     }
 }

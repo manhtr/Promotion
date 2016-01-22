@@ -15,12 +15,12 @@ namespace Promotion.Serial
         DateTime dtStartDate = DateTime.Parse(System.Configuration.ConfigurationManager.AppSettings["StartDate"]);
         DateTime dtEndDate = DateTime.Parse(System.Configuration.ConfigurationManager.AppSettings["EndDate"]);
 
-        string strT24Host = System.Configuration.ConfigurationManager.AppSettings["gpb.t24.host"];
-        string strT24Port = System.Configuration.ConfigurationManager.AppSettings["gpb.t24.port"];
-        string strT24Service = System.Configuration.ConfigurationManager.AppSettings["gpb.t24.servicename"];
-        string strT24Uid = System.Configuration.ConfigurationManager.AppSettings["gpb.t24.userid"];
-        string strT24Pwd = System.Configuration.ConfigurationManager.AppSettings["gpb.t24.pwd"];
-        string strT24Schema = System.Configuration.ConfigurationManager.AppSettings["gbp.t24.schema"];
+        //string strT24Host = System.Configuration.ConfigurationManager.AppSettings["gpb.t24.host"];
+        //string strT24Port = System.Configuration.ConfigurationManager.AppSettings["gpb.t24.port"];
+        //string strT24Service = System.Configuration.ConfigurationManager.AppSettings["gpb.t24.servicename"];
+        //string strT24Uid = System.Configuration.ConfigurationManager.AppSettings["gpb.t24.userid"];
+        //string strT24Pwd = System.Configuration.ConfigurationManager.AppSettings["gpb.t24.pwd"];
+        //string strT24Schema = System.Configuration.ConfigurationManager.AppSettings["gbp.t24.schema"];
 
         #region Events
 
@@ -58,8 +58,8 @@ namespace Promotion.Serial
         {
             if (Session[Constant.USERNAME] != null)
             {
-                Promotion.Serial.Function objFunction = new Function();
-                Promotion.Serial.SerialBook objSerialBook = objFunction.GetSerialBookResultByBookNumber(Session[Constant.SO_SO].ToString(), dtStartDate, dtEndDate);
+                Serial.Function objFunction = new Function();
+                Serial.SerialBook objSerialBook = objFunction.GetSerialBookResultByBookNumber(Session[Constant.SO_SO].ToString(), dtStartDate, dtEndDate);
                 if (objSerialBook != null)
                 {
                     string strResponse = string.Empty;
@@ -89,15 +89,15 @@ namespace Promotion.Serial
             Session[Constant.SO_SO] = txtSoSo.Text.Trim();
             Session[Constant.PHAN_HE] = lstradPhanHe.SelectedValue;
             string strBookCategory = string.Empty;
-            Promotion.Serial.Function objFunction = new Function();
-            Promotion.Serial.SerialBook objSerialBook = objFunction.GetSerialBookFromT24(txtSoSo.Text, strT24Host, strT24Port, strT24Service, strT24Uid, strT24Pwd, strT24Schema, lstradPhanHe.SelectedValue, txtCIF.Text.Trim(), ref strBookCategory);
+            Serial.Function objFunction = new Function();
+            Serial.SerialBook objSerialBook = objFunction.GetSerialBookFromT24(txtSoSo.Text, lstradPhanHe.SelectedValue, txtCIF.Text.Trim(), ref strBookCategory);
             if (objSerialBook != null && Session[Constant.USERNAME] != null)
             {
                 lblMaKhachHang.Text = objSerialBook.Customer_Id;
                 lblTenKhachHang.Text = objSerialBook.Customer_Name;
                 lblSoTienGui.Text = String.Format("{0:C}", objSerialBook.TotalAmount).Replace("$", "") + " " + objSerialBook.Currency;
                 lblKyHanGui.Text = objSerialBook.PeriodInWord;
-                Promotion.Serial.SerialBook objSB = objFunction.GetSerialBookResultByBookNumber(txtSoSo.Text, dtStartDate, dtEndDate);
+                Serial.SerialBook objSB = objFunction.GetSerialBookResultByBookNumber(txtSoSo.Text, dtStartDate, dtEndDate);
                 if (objSB != null)
                 {
                     if (objSB.Masoduthuongs != null)

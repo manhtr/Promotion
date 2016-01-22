@@ -34,7 +34,18 @@ namespace Promotion.DataModel
             try
             {
                 strUserName = strUserName.Trim().ToLower();
-                return db.Users.FirstOrDefault(o => o.UserName == strUserName);
+                //return db.Users.FirstOrDefault(o => o.UserName == strUserName);
+                User obj = null;
+                obj = db.Users.FirstOrDefault(o => o.UserName == strUserName);
+                if(obj != null)
+                {
+                    var tmp = db.Permisions.Where(t => t.UserID == obj.ID);
+                    if (tmp != null)
+                    {
+                        obj.Permisions = db.Permisions.Where(t => t.UserID == obj.ID).ToList();
+                    }
+                }
+                return obj;
             }
             catch (Exception ex)
             {

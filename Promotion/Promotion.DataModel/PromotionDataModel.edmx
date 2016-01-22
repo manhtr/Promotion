@@ -6,12 +6,15 @@
     <edmx:StorageModels>
     <Schema Namespace="PromotionModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="PromotionModelStoreContainer">
+          <EntitySet Name="AZ_ACCOUNT" EntityType="PromotionModel.Store.AZ_ACCOUNT" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="BLACKLIST_CUSTOMER" EntityType="PromotionModel.Store.BLACKLIST_CUSTOMER" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="COMPANY" EntityType="PromotionModel.Store.COMPANY" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CUSTOMER" EntityType="PromotionModel.Store.CUSTOMER" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DAO" EntityType="PromotionModel.Store.DAO" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DAO_COMPANY" EntityType="PromotionModel.Store.DAO_COMPANY" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DelSerial" EntityType="PromotionModel.Store.DelSerial" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="LiXi" EntityType="PromotionModel.Store.LiXi" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LOANS_AND_DEPOSITS" EntityType="PromotionModel.Store.LOANS_AND_DEPOSITS" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="LuckySerial" EntityType="PromotionModel.Store.LuckySerial" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Permision" EntityType="PromotionModel.Store.Permision" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SerialByMonth" EntityType="PromotionModel.Store.SerialByMonth" store:Type="Tables" Schema="dbo" />
@@ -21,6 +24,25 @@
           <EntitySet Name="STAFF_USER" EntityType="PromotionModel.Store.STAFF_USER" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="PromotionModel.Store.User" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
+        <EntityType Name="AZ_ACCOUNT">
+          <Key>
+            <PropertyRef Name="ACCOUNT_NUMBER" />
+          </Key>
+          <Property Name="ACCOUNT_NUMBER" Type="varchar" Nullable="false" MaxLength="16" />
+          <Property Name="CUSTOMER_ID" Type="varchar" MaxLength="10" />
+          <Property Name="CATEGORY" Type="varchar" MaxLength="6" />
+          <Property Name="CURRENCY" Type="varchar" MaxLength="3" />
+          <Property Name="PRINCIPAL" Type="float" />
+          <Property Name="VALUE_DATE" Type="datetime" />
+          <Property Name="MATURITY_DATE" Type="datetime" />
+          <Property Name="PASSBOOK_NUMBER" Type="varchar" MaxLength="50" />
+          <Property Name="AZ_NARRATIVE" Type="varchar" MaxLength="100" />
+          <Property Name="INTEREST_RATE" Type="decimal" Scale="2" />
+          <Property Name="TERM" Type="varchar" MaxLength="3" />
+          <Property Name="CO_CODE" Type="varchar" Nullable="false" MaxLength="11" />
+          <Property Name="DEPT_CODE" Type="varchar" MaxLength="4" />
+          <Property Name="THAM_GIA_KM" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="BLACKLIST_CUSTOMER">
           <Key>
             <PropertyRef Name="ID" />
@@ -36,20 +58,39 @@
           <Property Name="COMPANY_CODE" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="COMPANY_NAME" Type="varchar" MaxLength="200" />
           <Property Name="NAME_ADDRESS" Type="varchar" MaxLength="200" />
-          <Property Name="MNEMONIC" Type="char" MaxLength="3" />
-          <Property Name="LANGUAGE_CODE" Type="char" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="CUSTOMER_CODE" />
+          </Key>
+          <Property Name="CUSTOMER_CODE" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="CUSTOMER_NAME" Type="varchar" MaxLength="100" />
+          <Property Name="CITIZEN_ID" Type="varchar" MaxLength="15" />
+          <Property Name="CITIZEN_DATE" Type="varchar" MaxLength="10" />
+          <Property Name="CITI_IS_PLACE" Type="varchar" MaxLength="35" />
+          <Property Name="ADDRESS" Type="varchar" MaxLength="50" />
+          <Property Name="TELEPHONE" Type="varchar" MaxLength="200" />
+          <Property Name="FACSIMILE" Type="varchar" MaxLength="200" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="500" />
+          <Property Name="WEBPAGE" Type="varchar" MaxLength="500" />
+          <Property Name="BIRTH_INCORP_DATE" Type="varchar" MaxLength="11" />
+          <Property Name="GENDER" Type="varchar" MaxLength="6" />
+          <Property Name="SECTOR" Type="varchar" MaxLength="4" />
+          <Property Name="NATIONALITY" Type="varchar" MaxLength="2" />
+          <Property Name="COMPANY" Type="varchar" MaxLength="11" />
+          <Property Name="CO_CODE" Type="varchar" MaxLength="11" />
+          <Property Name="DEPT_CODE" Type="varchar" MaxLength="4" />
+          <Property Name="LEGAL_ID" Type="varchar" MaxLength="20" />
+          <Property Name="HOMEPHONE" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="DAO">
           <Key>
             <PropertyRef Name="DAO_CODE" />
           </Key>
           <Property Name="DAO_CODE" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="AREA" Type="varchar" MaxLength="50" />
           <Property Name="NAME" Type="varchar" MaxLength="50" />
           <Property Name="DELIVERY_POINT" Type="varchar" MaxLength="50" />
-          <Property Name="DEPT_LEVEL" Type="varchar" MaxLength="50" />
           <Property Name="DEPT_PARENT" Type="varchar" MaxLength="50" />
-          <Property Name="DEPARTMENT_LCL" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="DAO_COMPANY">
           <Key>
@@ -88,6 +129,26 @@
           <Property Name="DEPT_CODE" Type="nvarchar" MaxLength="50" />
           <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="Deleted" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LOANS_AND_DEPOSITS">
+          <Key>
+            <PropertyRef Name="CONTRACT_NO" />
+            <PropertyRef Name="CO_CODE" />
+          </Key>
+          <Property Name="CONTRACT_NO" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="CATEGORY" Type="varchar" MaxLength="6" />
+          <Property Name="CUSTOMER_ID" Type="varchar" MaxLength="10" />
+          <Property Name="CURRENCY" Type="varchar" MaxLength="3" />
+          <Property Name="TERM" Type="varchar" MaxLength="3" />
+          <Property Name="AMOUNT" Type="float" />
+          <Property Name="VALUE_DATE" Type="datetime" />
+          <Property Name="FIN_MAT_DATE" Type="datetime" />
+          <Property Name="INTEREST_RATE" Type="decimal" Scale="2" />
+          <Property Name="TOTAL_INTEREST_AMT" Type="decimal" />
+          <Property Name="CUST_REMARKS" Type="varchar" MaxLength="350" />
+          <Property Name="SO_HOP_DONG" Type="varchar" MaxLength="100" />
+          <Property Name="CO_CODE" Type="varchar" Nullable="false" MaxLength="11" />
+          <Property Name="DEPT_CODE" Type="varchar" MaxLength="4" />
         </EntityType>
         <EntityType Name="LuckySerial">
           <Key>
@@ -215,6 +276,9 @@
           <EntitySet Name="SerialResults" EntityType="PromotionModel.SerialResult" />
           <EntitySet Name="STAFF_USER" EntityType="PromotionModel.STAFF_USER" />
           <EntitySet Name="Users" EntityType="PromotionModel.User" />
+          <EntitySet Name="AZ_ACCOUNT" EntityType="PromotionModel.AZ_ACCOUNT" />
+          <EntitySet Name="CUSTOMERs" EntityType="PromotionModel.CUSTOMER" />
+          <EntitySet Name="LOANS_AND_DEPOSITS" EntityType="PromotionModel.LOANS_AND_DEPOSITS" />
         </EntityContainer>
         <EntityType Name="BLACKLIST_CUSTOMER">
           <Key>
@@ -231,20 +295,15 @@
           <Property Type="String" Name="COMPANY_CODE" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="COMPANY_NAME" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="NAME_ADDRESS" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="MNEMONIC" MaxLength="3" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="LANGUAGE_CODE" MaxLength="2" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="DAO">
           <Key>
             <PropertyRef Name="DAO_CODE" />
           </Key>
           <Property Type="String" Name="DAO_CODE" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="AREA" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="NAME" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="DELIVERY_POINT" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="DEPT_LEVEL" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="DEPT_PARENT" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="DEPARTMENT_LCL" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="DAO_COMPANY">
           <Key>
@@ -391,6 +450,69 @@
           <Property Type="String" Name="FullName" MaxLength="254" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="Created" Precision="3" />
         </EntityType>
+        <EntityType Name="AZ_ACCOUNT">
+          <Key>
+            <PropertyRef Name="ACCOUNT_NUMBER" />
+          </Key>
+          <Property Type="String" Name="ACCOUNT_NUMBER" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CUSTOMER_ID" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CATEGORY" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CURRENCY" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="PRINCIPAL" />
+          <Property Type="DateTime" Name="VALUE_DATE" Precision="3" />
+          <Property Type="DateTime" Name="MATURITY_DATE" Precision="3" />
+          <Property Type="String" Name="PASSBOOK_NUMBER" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AZ_NARRATIVE" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="INTEREST_RATE" Precision="18" Scale="2" />
+          <Property Type="String" Name="TERM" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CO_CODE" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DEPT_CODE" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="THAM_GIA_KM" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="CUSTOMER_CODE" />
+          </Key>
+          <Property Type="String" Name="CUSTOMER_CODE" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CUSTOMER_NAME" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CITIZEN_ID" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CITIZEN_DATE" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CITI_IS_PLACE" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ADDRESS" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TELEPHONE" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FACSIMILE" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EMAIL" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="WEBPAGE" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BIRTH_INCORP_DATE" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="GENDER" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SECTOR" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NATIONALITY" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="COMPANY" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CO_CODE" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DEPT_CODE" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LEGAL_ID" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="HOMEPHONE" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="LOANS_AND_DEPOSITS">
+          <Key>
+            <PropertyRef Name="CONTRACT_NO" />
+            <PropertyRef Name="CO_CODE" />
+          </Key>
+          <Property Type="String" Name="CONTRACT_NO" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CATEGORY" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CUSTOMER_ID" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CURRENCY" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TERM" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="AMOUNT" />
+          <Property Type="DateTime" Name="VALUE_DATE" Precision="3" />
+          <Property Type="DateTime" Name="FIN_MAT_DATE" Precision="3" />
+          <Property Type="Decimal" Name="INTEREST_RATE" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TOTAL_INTEREST_AMT" Precision="18" Scale="0" />
+          <Property Type="String" Name="CUST_REMARKS" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SO_HOP_DONG" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CO_CODE" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DEPT_CODE" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -409,8 +531,6 @@
           <EntitySetMapping Name="COMPANies">
             <EntityTypeMapping TypeName="PromotionModel.COMPANY">
               <MappingFragment StoreEntitySet="COMPANY">
-                <ScalarProperty Name="LANGUAGE_CODE" ColumnName="LANGUAGE_CODE" />
-                <ScalarProperty Name="MNEMONIC" ColumnName="MNEMONIC" />
                 <ScalarProperty Name="NAME_ADDRESS" ColumnName="NAME_ADDRESS" />
                 <ScalarProperty Name="COMPANY_NAME" ColumnName="COMPANY_NAME" />
                 <ScalarProperty Name="COMPANY_CODE" ColumnName="COMPANY_CODE" />
@@ -420,12 +540,9 @@
           <EntitySetMapping Name="DAOs">
             <EntityTypeMapping TypeName="PromotionModel.DAO">
               <MappingFragment StoreEntitySet="DAO">
-                <ScalarProperty Name="DEPARTMENT_LCL" ColumnName="DEPARTMENT_LCL" />
                 <ScalarProperty Name="DEPT_PARENT" ColumnName="DEPT_PARENT" />
-                <ScalarProperty Name="DEPT_LEVEL" ColumnName="DEPT_LEVEL" />
                 <ScalarProperty Name="DELIVERY_POINT" ColumnName="DELIVERY_POINT" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
-                <ScalarProperty Name="AREA" ColumnName="AREA" />
                 <ScalarProperty Name="DAO_CODE" ColumnName="DAO_CODE" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -582,6 +699,71 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AZ_ACCOUNT">
+            <EntityTypeMapping TypeName="PromotionModel.AZ_ACCOUNT">
+              <MappingFragment StoreEntitySet="AZ_ACCOUNT">
+                <ScalarProperty Name="THAM_GIA_KM" ColumnName="THAM_GIA_KM" />
+                <ScalarProperty Name="DEPT_CODE" ColumnName="DEPT_CODE" />
+                <ScalarProperty Name="CO_CODE" ColumnName="CO_CODE" />
+                <ScalarProperty Name="TERM" ColumnName="TERM" />
+                <ScalarProperty Name="INTEREST_RATE" ColumnName="INTEREST_RATE" />
+                <ScalarProperty Name="AZ_NARRATIVE" ColumnName="AZ_NARRATIVE" />
+                <ScalarProperty Name="PASSBOOK_NUMBER" ColumnName="PASSBOOK_NUMBER" />
+                <ScalarProperty Name="MATURITY_DATE" ColumnName="MATURITY_DATE" />
+                <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+                <ScalarProperty Name="PRINCIPAL" ColumnName="PRINCIPAL" />
+                <ScalarProperty Name="CURRENCY" ColumnName="CURRENCY" />
+                <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="ACCOUNT_NUMBER" ColumnName="ACCOUNT_NUMBER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUSTOMERs">
+            <EntityTypeMapping TypeName="PromotionModel.CUSTOMER">
+              <MappingFragment StoreEntitySet="CUSTOMER">
+                <ScalarProperty Name="HOMEPHONE" ColumnName="HOMEPHONE" />
+                <ScalarProperty Name="LEGAL_ID" ColumnName="LEGAL_ID" />
+                <ScalarProperty Name="DEPT_CODE" ColumnName="DEPT_CODE" />
+                <ScalarProperty Name="CO_CODE" ColumnName="CO_CODE" />
+                <ScalarProperty Name="COMPANY" ColumnName="COMPANY" />
+                <ScalarProperty Name="NATIONALITY" ColumnName="NATIONALITY" />
+                <ScalarProperty Name="SECTOR" ColumnName="SECTOR" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+                <ScalarProperty Name="BIRTH_INCORP_DATE" ColumnName="BIRTH_INCORP_DATE" />
+                <ScalarProperty Name="WEBPAGE" ColumnName="WEBPAGE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="FACSIMILE" ColumnName="FACSIMILE" />
+                <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="CITI_IS_PLACE" ColumnName="CITI_IS_PLACE" />
+                <ScalarProperty Name="CITIZEN_DATE" ColumnName="CITIZEN_DATE" />
+                <ScalarProperty Name="CITIZEN_ID" ColumnName="CITIZEN_ID" />
+                <ScalarProperty Name="CUSTOMER_NAME" ColumnName="CUSTOMER_NAME" />
+                <ScalarProperty Name="CUSTOMER_CODE" ColumnName="CUSTOMER_CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOANS_AND_DEPOSITS">
+            <EntityTypeMapping TypeName="PromotionModel.LOANS_AND_DEPOSITS">
+              <MappingFragment StoreEntitySet="LOANS_AND_DEPOSITS">
+                <ScalarProperty Name="DEPT_CODE" ColumnName="DEPT_CODE" />
+                <ScalarProperty Name="CO_CODE" ColumnName="CO_CODE" />
+                <ScalarProperty Name="SO_HOP_DONG" ColumnName="SO_HOP_DONG" />
+                <ScalarProperty Name="CUST_REMARKS" ColumnName="CUST_REMARKS" />
+                <ScalarProperty Name="TOTAL_INTEREST_AMT" ColumnName="TOTAL_INTEREST_AMT" />
+                <ScalarProperty Name="INTEREST_RATE" ColumnName="INTEREST_RATE" />
+                <ScalarProperty Name="FIN_MAT_DATE" ColumnName="FIN_MAT_DATE" />
+                <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+                <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+                <ScalarProperty Name="TERM" ColumnName="TERM" />
+                <ScalarProperty Name="CURRENCY" ColumnName="CURRENCY" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+                <ScalarProperty Name="CONTRACT_NO" ColumnName="CONTRACT_NO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -39,7 +39,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="log4net">
-      <HintPath>..\..\lib\log4net\4.0\release\log4net.dll</HintPath>
+      <HintPath>..\..\..\lib\log4net\4.0\release\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -54,11 +54,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AZ_ACCOUNT.cs">
+      <DependentUpon>PromotionDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="BLACKLIST_CUSTOMER.cs">
       <DependentUpon>PromotionDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BLACKLIST_CUSTOMER_BO.cs" />
     <Compile Include="COMPANY.cs">
+      <DependentUpon>PromotionDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CUSTOMER.cs">
       <DependentUpon>PromotionDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAO.cs">
@@ -76,6 +82,9 @@
       <DependentUpon>PromotionDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="LiXi_BO.cs" />
+    <Compile Include="LOANS_AND_DEPOSITS.cs">
+      <DependentUpon>PromotionDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="LuckySerial.cs">
       <DependentUpon>PromotionDataModel.tt</DependentUpon>
     </Compile>

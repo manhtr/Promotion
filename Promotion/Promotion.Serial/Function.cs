@@ -14,166 +14,125 @@ namespace Promotion.Serial
     {
         ILog log = LogManager.GetLogger(typeof(Function));
         const string m_cstrStandardSelectionName = "LD.LOANS.AND.DEPOSITS";
-        public SerialBook GetSerialBookFromT24(string strBookNumber, string strHost, string strPort, string strService, string strUserId, string strPwd, string strSchema, string strBOOK_TYPE, string strCIF, ref string strCategory)
+        //public SerialBook GetSerialBookFromT24(string strBookNumber, string strHost, string strPort, string strService, string strUserId, string strPwd, string strSchema, string strBOOK_TYPE, string strCIF, ref string strCategory)
+        public SerialBook GetSerialBookFromT24(string strBookNumber, string strBOOK_TYPE, string strCIF, ref string strCategory)
         {
             SerialBook oBook = null;
-            //T24DataMining.DataMiningClient oClient = new T24DataMining.DataMiningClient();
-            //bool bResult = false;
-            //string strResponse = string.Empty;
-            //bResult = oClient.Connect(strHost, strPort, strService, strUserId, strPwd, ref strResponse);
-            //if (!bResult)
-            //{
-            //    log.Fatal(strResponse);
-            //}
-            //else
-            //{
-            //    try
-            //    {
-            //        string strAZCommandText = "SELECT ID,PASSBOOK.NUMBER,CUSTOMER,CURRENCY,PRINCIPAL,VALUE.DATE,MATURITY.DATE,CO.CODE,TERM FROM " + strSchema + ".";
-            //        strAZCommandText += "FBNK_AZ_ACCOUNT WHERE PASSBOOK.NUMBER='" + strBookNumber + "'";
+            using (PromotionEntities db = new PromotionEntities())
+            {
+                bool bResult = false;
+                string strResponse = string.Empty;
 
-            //        string strLDCommandText = "SELECT ID,CONTRACT.NO,CUSTOMER.ID,CURRENCY,AMOUNT,VALUE.DATE,FIN.MAT.DATE,CO.CODE,TERM FROM " + strSchema + ".";
-            //        strLDCommandText += "FBNK_LD_L002 WHERE CONTRACT.NO='" + strBookNumber + "'";
+                try
+                {
+                    //string strAZCommandText = "SELECT ID,PASSBOOK.NUMBER,CUSTOMER,CURRENCY,PRINCIPAL,VALUE.DATE,MATURITY.DATE,CO.CODE,TERM FROM " + strSchema + ".";
+                    //strAZCommandText += "FBNK_AZ_ACCOUNT WHERE PASSBOOK.NUMBER='" + strBookNumber + "'";
 
-            //        if (strBOOK_TYPE.ToUpper() == "AZ")
-            //        {
-            //            strResponse = string.Empty;
-            //            //DataSet ods = oClient.ExecSQL(strHost, strPort, strService, strUserId, strPwd, strAZCommandText, "", false, ref bResult, ref strResponse);
-            //            DataSet ods = oClient.GetAZByCustomerID(strHost, strPort, strService, strSchema, strUserId, strPwd, strCIF, false, ref bResult, ref strResponse);
-            //            if ((ods == null) || ods.Tables.Count <= 0)
-            //            {
+                    //string strLDCommandText = "SELECT ID,CONTRACT.NO,CUSTOMER.ID,CURRENCY,AMOUNT,VALUE.DATE,FIN.MAT.DATE,CO.CODE,TERM FROM " + strSchema + ".";
+                    //strLDCommandText += "FBNK_LD_L002 WHERE CONTRACT.NO='" + strBookNumber + "'";
 
-            //            }
-            //            else
-            //            {
-            //                Commons.Convertion _oConvertion = new Commons.Convertion();
-            //                DataTable oAZTable = ods.Tables[0];
-            //                foreach (DataRow row in oAZTable.Rows)
-            //                {
-            //                    if (row["PASSBOOK.NUMBER"] != null && row["PASSBOOK.NUMBER"].ToString() == strBookNumber)
-            //                    {
-            //                        oBook = new SerialBook();
-            //                        oBook.Book_Number = row["PASSBOOK.NUMBER"].ToString();
-            //                        oBook.Customer_Id = row["CUSTOMER"].ToString();
-            //                        oBook.Currency = row["CURRENCY"].ToString().ToUpper();
-            //                        oBook.TotalAmount = double.Parse(row["PRINCIPAL"].ToString());
-            //                        oBook.ValueDate = _oConvertion.ConvertToMMddyyyy(row["VALUE.DATE"].ToString());
-            //                        oBook.MaturityDate = _oConvertion.ConvertToMMddyyyy(row["MATURITY.DATE"].ToString());
-            //                        oBook.ACCOUNT_NUMBER = row["ID"].ToString();
-            //                        oBook.CO_CODE = row["CO.CODE"].ToString();
-            //                        if (row["THAM.GIA.KM"] != null)
-            //                        {
-            //                            oBook.ThamGiaKM = row["THAM.GIA.KM"].ToString();
-            //                        }
-            //                        if (oAZTable.Rows[0]["TERM"] != null && !string.IsNullOrEmpty(row["TERM"].ToString()))
-            //                        {
-            //                            oBook.TERM = row["TERM"].ToString();
-            //                        }
-            //                        else
-            //                        {
-            //                            oBook.TERM = row["ORG.TERM"].ToString();
-            //                        }
-            //                        strCategory = row["CATEGORY"].ToString();
+                    if (strBOOK_TYPE.ToUpper() == "AZ")
+                    {
+                        strResponse = string.Empty;
+                        var lstAZByCustomerID = db.AZ_ACCOUNT.Where(t => t.CUSTOMER_ID.Equals(strCIF));
+                        if(lstAZByCustomerID != null)
+                        {
+                            foreach (var azAccount in lstAZByCustomerID)
+                            {
+                                Commons.Convertion _oConvertion = new Commons.Convertion();
+                                if (azAccount.PASSBOOK_NUMBER != null && azAccount.PASSBOOK_NUMBER == strBookNumber)
+                                {
+                                    oBook = new SerialBook();
+                                    oBook.Book_Number = azAccount.PASSBOOK_NUMBER;
+                                    oBook.Customer_Id = azAccount.CUSTOMER_ID;
+                                    oBook.Currency = azAccount.CURRENCY;
+                                    oBook.TotalAmount = Convert.ToDouble(azAccount.PRINCIPAL);
+                                    oBook.ValueDate = Convert.ToDateTime(azAccount.VALUE_DATE);
+                                    oBook.MaturityDate = Convert.ToDateTime(azAccount.MATURITY_DATE);
+                                    oBook.ACCOUNT_NUMBER = azAccount.ACCOUNT_NUMBER;
+                                    oBook.CO_CODE = azAccount.CO_CODE;
+                                    if (azAccount.THAM_GIA_KM != null)
+                                    {
+                                        oBook.ThamGiaKM = azAccount.THAM_GIA_KM;
+                                    }
+                                    if (azAccount.TERM != null && !string.IsNullOrEmpty(azAccount.TERM))
+                                    {
+                                        oBook.TERM = azAccount.TERM;
+                                    }
+                                    strCategory = azAccount.CATEGORY;
 
-            //                        //reset response
-            //                        strResponse = string.Empty;
-            //                        string strCustomerCommandText = "SELECT ID,NAME.1,LEGAL.ID,SECTOR,PHONE.1 FROM " + strSchema + ".FBNK_CUSTOMER WHERE ID='" + oBook.Customer_Id + "'";
-            //                        DataSet oCustomerDs = oClient.ExecSQL(strHost, strPort, strService, strUserId, strPwd, strCustomerCommandText, "", false, ref bResult, ref strResponse);
-            //                        if ((oCustomerDs == null) || (oCustomerDs.Tables.Count <= 0))
-            //                        {
+                                    //reset response
+                                    strResponse = string.Empty;
+                                    var objCust = db.CUSTOMERs.FirstOrDefault(t => t.CUSTOMER_CODE.Equals(oBook.Customer_Id));
+                                    if(objCust != null)
+                                    {
+                                        oBook.Customer_Name = objCust.CUSTOMER_NAME;
+                                        oBook.CMTND = objCust.LEGAL_ID;
+                                        oBook.Sector = objCust.SECTOR;
+                                        oBook.Telephone = objCust.TELEPHONE;
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else //LD
+                    {
+                        strResponse = string.Empty;
+                        var objLD = db.AZ_ACCOUNT.SingleOrDefault(t => t.PASSBOOK_NUMBER.Equals(strBookNumber));
+                        if(objLD != null)
+                        {
+                            Commons.Convertion _oConvertion = new Commons.Convertion();
+                            oBook = new SerialBook();
+                            oBook.Book_Number = objLD.PASSBOOK_NUMBER;
+                            oBook.Customer_Id = objLD.CUSTOMER_ID;
+                            oBook.Currency = objLD.CURRENCY;
+                            oBook.TotalAmount = Convert.ToDouble(objLD.PRINCIPAL);
+                            oBook.ValueDate = Convert.ToDateTime(objLD.VALUE_DATE);
+                            oBook.MaturityDate = Convert.ToDateTime(objLD.MATURITY_DATE); ;
+                            oBook.ACCOUNT_NUMBER = objLD.ACCOUNT_NUMBER;
+                            oBook.CO_CODE = objLD.CO_CODE;
+                            if (objLD.TERM != null && !string.IsNullOrEmpty(objLD.TERM))
+                            {
+                                oBook.TERM = objLD.TERM;
+                            }
+                            strCategory = objLD.CATEGORY;
 
-            //                        }
-            //                        else
-            //                        {
-            //                            DataTable oCustomerTable = oCustomerDs.Tables[0];
-            //                            oBook.Customer_Name = oCustomerTable.Rows[0]["NAME.1"].ToString();
-            //                            oBook.CMTND = oCustomerTable.Rows[0]["LEGAL.ID"].ToString();
-            //                            oBook.Sector = oCustomerTable.Rows[0]["SECTOR"].ToString();
-            //                            oBook.Telephone = oCustomerTable.Rows[0]["PHONE.1"].ToString();
-            //                        }
-            //                        break;
-            //                    }
-            //                }
-            //            }
-            //        }
-            //        else //LD
-            //        {
-            //            strResponse = string.Empty;
-            //            DataSet ods = oClient.ExecSQL(strHost, strPort, strService, strUserId, strPwd, strLDCommandText, m_cstrStandardSelectionName, false, ref bResult, ref strResponse);
-            //            if ((ods == null) || ods.Tables.Count <= 0)
-            //            {
-            //                log.Fatal(strResponse);
-            //            }
-            //            else
-            //            {
-            //                Commons.Convertion _oConvertion = new Commons.Convertion();
-            //                DataTable oAZTable = ods.Tables[0];
-            //                oBook = new SerialBook();
-            //                oBook.Book_Number = oAZTable.Rows[0]["CONTRACT.NO"].ToString();
-            //                oBook.Customer_Id = oAZTable.Rows[0]["CUSTOMER.ID"].ToString();
-            //                oBook.Currency = oAZTable.Rows[0]["CURRENCY"].ToString().ToUpper();
-            //                oBook.TotalAmount = double.Parse(oAZTable.Rows[0]["AMOUNT"].ToString());
-            //                oBook.ValueDate = _oConvertion.ConvertToMMddyyyy(oAZTable.Rows[0]["VALUE.DATE"].ToString());
-            //                oBook.MaturityDate = _oConvertion.ConvertToMMddyyyy(oAZTable.Rows[0]["FIN.MAT.DATE"].ToString());
-            //                oBook.ACCOUNT_NUMBER = oAZTable.Rows[0]["ID"].ToString();
-            //                oBook.CO_CODE = oAZTable.Rows[0]["CO.CODE"].ToString();
-            //                if (oAZTable.Rows[0]["TERM"] != null && !string.IsNullOrEmpty(oAZTable.Rows[0]["TERM"].ToString()))
-            //                {
-            //                    oBook.TERM = oAZTable.Rows[0]["TERM"].ToString();
-            //                }
-            //                else
-            //                {
-            //                    oBook.TERM = oAZTable.Rows[0]["ORG.TERM"].ToString();
-            //                }
-            //                strCategory = oAZTable.Rows[0]["CATEGORY"].ToString();
-
-            //                //reset response
-            //                strResponse = string.Empty;
-            //                string strCustomerCommandText = "SELECT ID,NAME.1,LEGAL.ID,SECTOR,PHONE.1 FROM " + strSchema + ".FBNK_CUSTOMER WHERE ID='" + oBook.Customer_Id + "'";
-            //                DataSet oCustomerDs = oClient.ExecSQL(strHost, strPort, strService, strUserId, strPwd, strCustomerCommandText, "", false, ref bResult, ref strResponse);
-
-            //                if ((oCustomerDs == null) || (oCustomerDs.Tables.Count <= 0))
-            //                {
-            //                    log.Fatal(strResponse);
-            //                }
-            //                else
-            //                {
-            //                    DataTable oCustomerTable = oCustomerDs.Tables[0];
-            //                    oBook.Customer_Name = oCustomerTable.Rows[0]["NAME.1"].ToString();
-            //                    oBook.CMTND = oCustomerTable.Rows[0]["LEGAL.ID"].ToString();
-            //                    oBook.Sector = oCustomerTable.Rows[0]["SECTOR"].ToString();
-            //                    oBook.Telephone = oCustomerTable.Rows[0]["PHONE.1"].ToString();
-            //                }
-            //            }
-            //        }
-            //    }
-            //    catch (Exception oExc)
-            //    {
-            //        log.Fatal(oExc);
-            //    }
-            //    finally
-            //    {
-            //        oClient.Close();
-            //        oClient = null;
-            //    }
-            //    if (oBook != null)
-            //    {
-            //        oBook.Customer_Name = SplitT24CustomerName(oBook.Customer_Name);
-            //        TimeSpan ts = oBook.MaturityDate - oBook.ValueDate;
-            //        int nPeriod = (int)(ts.TotalDays / 30);
-            //        int nRemain = (int)(ts.TotalDays % 30);
-            //        if (nRemain >= 28) nPeriod++;
-            //        if (nPeriod > 0)
-            //        {
-            //            oBook.PeriodInWord = string.Format("{0} tháng.", nPeriod.ToString());
-            //        }
-            //        else
-            //        {
-            //            int nWeeks = nRemain / 7;
-            //            oBook.PeriodInWord = string.Format("{0} tuần.", nWeeks.ToString());
-            //        }
-            //    }
-            //}
+                            //reset response
+                            strResponse = string.Empty;
+                            var objCust = db.CUSTOMERs.FirstOrDefault(t => t.CUSTOMER_CODE.Equals(oBook.Customer_Id));
+                            if (objCust != null)
+                            {
+                                oBook.Customer_Name = objCust.CUSTOMER_NAME;
+                                oBook.CMTND = objCust.LEGAL_ID;
+                                oBook.Sector = objCust.SECTOR;
+                                oBook.Telephone = objCust.TELEPHONE;
+                            }
+                        }
+                    }
+                }
+                catch (Exception oExc)
+                {
+                    log.Error(oExc.Message);
+                }
+                if (oBook != null)
+                {
+                    oBook.Customer_Name = SplitT24CustomerName(oBook.Customer_Name);
+                    TimeSpan ts = oBook.MaturityDate - oBook.ValueDate;
+                    int nPeriod = (int)(ts.TotalDays / 30);
+                    int nRemain = (int)(ts.TotalDays % 30);
+                    if (nRemain >= 28) nPeriod++;
+                    if (nPeriod > 0)
+                    {
+                        oBook.PeriodInWord = string.Format("{0} tháng.", nPeriod.ToString());
+                    }
+                    else
+                    {
+                        int nWeeks = nRemain / 7;
+                        oBook.PeriodInWord = string.Format("{0} tuần.", nWeeks.ToString());
+                    }
+                }
+            }
 
             return oBook;
         }

@@ -15,11 +15,8 @@ namespace Promotion.DataModel
     public partial class DAO
     {
         public string DAO_CODE { get; set; }
-        public string AREA { get; set; }
         public string NAME { get; set; }
         public string DELIVERY_POINT { get; set; }
-        public string DEPT_LEVEL { get; set; }
         public string DEPT_PARENT { get; set; }
-        public string DEPARTMENT_LCL { get; set; }
     }
 }
