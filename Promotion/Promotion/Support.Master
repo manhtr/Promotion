@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="IE=9" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Nhom 1</title>
+    <title><%: Page.Title %> - Cấp mã dự thưởng cho chương trình khuyến mại</title>
 
     <%--<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />--%>
     <link href="~/Content/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
@@ -158,7 +158,7 @@
             <div class="clear">
             </div>
             <div id="footer">
-                &copy; <%: DateTime.Now.Year %> - Bản quyền thuộc về ...
+                &copy; <%: DateTime.Now.Year %> - Bản quyền thuộc về Nhóm 1
             </div>
         </div>
     </form>

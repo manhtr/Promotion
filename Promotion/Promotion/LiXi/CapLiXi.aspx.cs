@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Web.UI.WebControls;
 using Promotion.Commons;
+using Promotion.DataModel;
 using log4net;
 
 namespace Promotion.LiXi
@@ -106,45 +107,41 @@ namespace Promotion.LiXi
                 return;
             }
             bool bValidate = false;
-            //using (eCS.IeCSAdminClient client = new eCS.IeCSAdminClient())
-            //{
-            //    bool result = true;
-            //    string response = string.Empty;
-            //    eCS.EBankingCustomerInformation objEBankingCustomerInformation = client.GetCustomerInformation(txtCIF.Text, ref result, ref response);
-            //    if (result && objEBankingCustomerInformation != null)
-            //    {
-            //        lblCIF.Text = objEBankingCustomerInformation.CustomerID;
-            //        lblCustomerName.Text = objEBankingCustomerInformation.VNCustomerName;
-            //        lblCMND.Text = objEBankingCustomerInformation.LegalID;
-            //        if (!string.IsNullOrEmpty(objEBankingCustomerInformation.Telephone))
-            //        {
-            //            lblTelephone.Text = objEBankingCustomerInformation.Telephone;
-            //        }
-            //        else
-            //        {
-            //            lblTelephone.Text = objEBankingCustomerInformation.SMSNumber.Replace("#", " ");
-            //        }
-            //        lblAddress.Text = objEBankingCustomerInformation.Address.Replace("ý", " ");
-            //        string strAccount = string.Empty;
-            //        using (eCS.IeCSClient objIeCSClient = new eCS.IeCSClient())
-            //        {
-            //            DataSet ds = objIeCSClient.GetAccount(txtCIF.Text.Trim(), ref result, ref response);
-            //            if (result && ds != null && ds.Tables.Count > 0)
-            //            {
-            //                foreach (DataRow item in ds.Tables[0].Rows)
-            //                {
-            //                    strAccount += item["ACCOUNT_NUMBER"].ToString() + "; ";
-            //                }
-            //            }
-            //        }
-            //        bValidate = true;
-            //        lblAccountNumber.Text = strAccount;
-            //    }
-            //    else
-            //    {
-            //        lblMessage.Text = "Thông tin khách hàng không phù hợp. " + response;
-            //    }
-            //}
+            using (PromotionEntities db = new PromotionEntities())
+            {
+                var cust = db.CUSTOMERs.FirstOrDefault(t => t.CUSTOMER_CODE.Equals(txtCIF.Text));
+                if(cust != null)
+                {
+                    lblCIF.Text = cust.CUSTOMER_CODE;
+                    lblCustomerName.Text = cust.CUSTOMER_NAME;
+                    lblCMND.Text = cust.LEGAL_ID;
+                    if (!string.IsNullOrEmpty(cust.TELEPHONE))
+                    {
+                        lblTelephone.Text = cust.TELEPHONE;
+                    }
+                    if (!string.IsNullOrEmpty(cust.ADDRESS))
+                    {
+                        lblAddress.Text = cust.ADDRESS;
+                    }
+                    string strAccount = string.Empty;
+
+                    var listAcc = db.AZ_ACCOUNT.Where(t => t.CUSTOMER_ID.Equals(txtCIF.Text.Trim())).ToList();
+                    if(listAcc != null)
+                    {
+                        foreach (var azAccount in listAcc)
+                        {
+                            //strAccount += azAccount.ACCOUNT_NUMBER + "; ";
+                        }
+                    }
+
+                    bValidate = true;
+                    lblAccountNumber.Text = strAccount;
+                }
+                else
+                {
+                    lblMessage.Text = "Thông tin khách hàng không phù hợp. ";
+                }
+            }
 
             if (bValidate)
             {

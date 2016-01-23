@@ -2,6 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div style="width:100%;text-align:center">
-        <img src="Images/Banner-01.jpg" alt="" />
+        <img src="Images/dhcn.png" alt="" />
     </div>
 </asp:Content>

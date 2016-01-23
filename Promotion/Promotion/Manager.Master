@@ -162,7 +162,7 @@
             <div class="clear">
             </div>
             <div id="footer">
-                &copy; <%: DateTime.Now.Year %> - Bản quyền thuộc về ...
+                &copy; <%: DateTime.Now.Year %> - Bản quyền thuộc về Nhóm 1
             </div>
         </div>
     </form>

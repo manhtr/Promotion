@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GPPromotion.Account
+namespace Promotion.Account
 {
 
 

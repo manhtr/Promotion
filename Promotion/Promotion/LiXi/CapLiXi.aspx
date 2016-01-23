@@ -126,7 +126,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <asp:Button ID="cmdAgree" runat="server" Visible="false" BackColor="#0E4E95" ForeColor="White" Text="Cấp Lì xì" OnClick="cmdAgree_Click" />
+                    <asp:Button ID="cmdAgree" runat="server" BackColor="#0E4E95" ForeColor="White" Text="Cấp Lì xì" OnClick="cmdAgree_Click" Visible="False" />
                 </td>
             </tr>
         </table>

@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Web.UI.WebControls;
 using Promotion.Commons;
+using Promotion.DataModel;
 using log4net;
 
 namespace Promotion.LiXi
@@ -81,67 +85,63 @@ namespace Promotion.LiXi
 
             if (Session[Constant.USERNAME] != null)
             {
-                //using (eCS.IeCSAdminClient client = new eCS.IeCSAdminClient())
-                //{
-                //    bool result = true;
-                //    string response = string.Empty;
-                //    eCS.EBankingCustomerInformation objEBankingCustomerInformation = client.GetCustomerInformation(txtCIF.Text, ref result, ref response);
-                //    if (result && objEBankingCustomerInformation != null)
-                //    {
-                //        lblCIF.Text = objEBankingCustomerInformation.CustomerID;
-                //        lblCustomerName.Text = objEBankingCustomerInformation.VNCustomerName;
-                //        lblCMND.Text = objEBankingCustomerInformation.LegalID;
-                //        if (!string.IsNullOrEmpty(objEBankingCustomerInformation.Telephone))
-                //        {
-                //            lblTelephone.Text = objEBankingCustomerInformation.Telephone;
-                //        }
-                //        else
-                //        {
-                //            lblTelephone.Text = objEBankingCustomerInformation.SMSNumber.Replace("#", " ");
-                //        }
-                //        lblAddress.Text = objEBankingCustomerInformation.Address.Replace("ý", " ");
-                //        string strAccount = string.Empty;
-                //        using (eCS.IeCSClient objIeCSClient = new eCS.IeCSClient())
-                //        {
-                //            DataSet ds = objIeCSClient.GetAccount(txtCIF.Text.Trim(), ref result, ref response);
-                //            if (result && ds != null && ds.Tables.Count > 0)
-                //            {
-                //                foreach (DataRow item in ds.Tables[0].Rows)
-                //                {
-                //                    strAccount += item["ACCOUNT_NUMBER"].ToString() + "; ";
-                //                }
-                //            }
-                //        }
-                //        lblAccountNumber.Text = strAccount;
-                //        hdfCIF.Value = txtCIF.Text.Trim();
-                //        using (DataModel.LiXi_BO objLiXi_BO = new DataModel.LiXi_BO())
-                //        {
-                //            DataModel.LiXi objLiXi = objLiXi_BO.GetByCIF(txtCIF.Text);
-                //            if (objLiXi != null)
-                //            {
-                //                string strPGD = string.Empty;
-                //                using (DataModel.COMPANY_BO objT24_COMPANY_BO = new DataModel.COMPANY_BO())
-                //                {
-                //                    DataModel.COMPANY objT24_COMPANY = objT24_COMPANY_BO.GetByCOMPANY_CODE(objLiXi.CoCode);
-                //                    if (objT24_COMPANY != null)
-                //                    {
-                //                        strPGD = objT24_COMPANY.COMPANY_NAME;
-                //                    }
-                //                }
-                //                lblStatus.Text = "Đã được cấp Lì xì vào " + objLiXi.Created.Value.ToString("dd/MM/yyyy HH:mm") + " tại " + strPGD + ". Cấp bởi " + objLiXi.CreatedBy;
-                //                cmdDelete.Visible = true;
-                //            }
-                //            else
-                //            {
-                //                lblStatus.Text = "Khách hàng chưa được cấp Lì xì";
-                //            }
-                //        }
-                //    }
-                //    else
-                //    {
-                //        lblMessage.Text = "Thông tin khách hàng không phù hợp. " + response;
-                //    }
-                //}
+                using (PromotionEntities db = new PromotionEntities())
+                {
+                    var cust = db.CUSTOMERs.FirstOrDefault(t => t.CUSTOMER_CODE.Equals(txtCIF.Text));
+                    if (cust != null)
+                    {
+                        lblCIF.Text = cust.CUSTOMER_CODE;
+                        lblCustomerName.Text = cust.CUSTOMER_NAME;
+                        lblCMND.Text = cust.LEGAL_ID;
+                        if (!string.IsNullOrEmpty(cust.TELEPHONE))
+                        {
+                            lblTelephone.Text = cust.TELEPHONE;
+                        }
+                        if (!string.IsNullOrEmpty(cust.ADDRESS))
+                        {
+                            lblAddress.Text = cust.ADDRESS;
+                        }
+                        string strAccount = string.Empty;
+
+                        var listAcc = db.AZ_ACCOUNT.Where(t => t.CUSTOMER_ID.Equals(txtCIF.Text.Trim())).ToList();
+                        if (listAcc != null)
+                        {
+                            foreach (var azAccount in listAcc)
+                            {
+                                //strAccount += azAccount.ACCOUNT_NUMBER + "; ";
+                            }
+                        }
+
+                        lblAccountNumber.Text = strAccount;
+                        hdfCIF.Value = txtCIF.Text.Trim();
+                        using (DataModel.LiXi_BO objLiXi_BO = new DataModel.LiXi_BO())
+                        {
+                            DataModel.LiXi objLiXi = objLiXi_BO.GetByCIF(txtCIF.Text);
+                            if (objLiXi != null)
+                            {
+                                string strPGD = string.Empty;
+                                using (DataModel.COMPANY_BO objT24_COMPANY_BO = new DataModel.COMPANY_BO())
+                                {
+                                    DataModel.COMPANY objT24_COMPANY = objT24_COMPANY_BO.GetByCOMPANY_CODE(objLiXi.CoCode);
+                                    if (objT24_COMPANY != null)
+                                    {
+                                        strPGD = objT24_COMPANY.COMPANY_NAME;
+                                    }
+                                }
+                                lblStatus.Text = "Đã được cấp Lì xì vào " + objLiXi.Created.Value.ToString("dd/MM/yyyy HH:mm") + " tại " + strPGD + ". Cấp bởi " + objLiXi.CreatedBy;
+                                cmdDelete.Visible = true;
+                            }
+                            else
+                            {
+                                lblStatus.Text = "Khách hàng chưa được cấp Lì xì";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        lblMessage.Text = "Thông tin khách hàng không phù hợp. ";
+                    }
+                }
             }
         }
 

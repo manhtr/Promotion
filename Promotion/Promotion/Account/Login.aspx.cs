@@ -1,7 +1,7 @@
 ﻿using System;
 using System.DirectoryServices;
 using System.Web.UI;
-using Promotion.Commons;
+//using Promotion.Commons;
 using log4net;
 
 namespace Promotion.Account
@@ -13,9 +13,9 @@ namespace Promotion.Account
         {
             if (!IsPostBack)
             {
-                if (Session[Constant.USERNAME] != null && !string.IsNullOrEmpty(Session[Constant.USERNAME].ToString()))
+                if (Session[Commons.Constant.USERNAME] != null && !string.IsNullOrEmpty(Session[Commons.Constant.USERNAME].ToString()))
                 {
-                    Page.Response.Redirect(Common.GetRootRequest() + "Default.aspx");
+                    Page.Response.Redirect(Commons.Common.GetRootRequest() + "Default.aspx");
                 }
 
                 if (!IsPostBack)
@@ -24,17 +24,6 @@ namespace Promotion.Account
                 }
             }
         }
-
-        //Hiện thị thông tin đăng nhập đã lưu từ cookie
-        //private void CheckRememberLogin()
-        //{
-        //    if (Request.Cookies["USER"] != null)
-        //    {
-        //        string strUsername = Request.Cookies["USER"]["NAME"].ToString();
-        //        string strPassword = Request.Cookies["USER"]["PASS"].ToString();
-        //        DoLogin(strUsername, strPassword);
-        //    }
-        //}
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
@@ -61,12 +50,37 @@ namespace Promotion.Account
                     DataModel.STAFF_USER objSTAFF_USER = objSTAFF_USER_BO.GetByUSERNAME(txtUsername.Text);
                     if (objSTAFF_USER != null)
                     {
-                        Session[Constant.USERNAME] = txtUsername.Text.Trim().ToLower();
-                        Session[Constant.FULLNAME] = objSTAFF_USER.HO_TEN;
-                        Session[Constant.DAO_CODE] = objSTAFF_USER.DAO_CODE;
-                        Session[Constant.DEPT_CODE] = objSTAFF_USER.DEPT_CODE;
+                        Session[Commons.Constant.USERNAME] = txtUsername.Text.Trim().ToLower();
+                        Session[Commons.Constant.FULLNAME] = objSTAFF_USER.HO_TEN;
+                        Session[Commons.Constant.DAO_CODE] = objSTAFF_USER.DAO_CODE;
+                        Session[Commons.Constant.DEPT_CODE] = objSTAFF_USER.DEPT_CODE;
                         log.Info("Login success: " + txtUsername.Text.Trim());
-                        Page.Response.Redirect(Common.GetRootRequest() + "Default.aspx");
+                        //Page.Response.Redirect(Common.GetRootRequest() + "Default.aspx");
+                        using (DataModel.User_BO objUser_BO = new DataModel.User_BO())
+                        {
+                            DataModel.User objUser = objUser_BO.GetByUserName(Session[Commons.Constant.USERNAME].ToString());
+                            if (objUser != null && objUser.Permisions != null)
+                            {
+                                bool hasPer = false;
+                                foreach (Promotion.DataModel.Permision item in objUser.Permisions)
+                                {
+                                    if (item != null && item.Permision1 == Commons.Constant.PERMISION_ADMIN)
+                                    {
+                                        hasPer = true;
+                                        break;
+                                    }
+                                }
+                                if (hasPer)  //Admin
+                                {
+                                    Page.Response.Redirect(Commons.Common.GetRootRequest() + "Manager.aspx");
+                                }
+                                else  //Tellers
+                                {
+                                    Page.Response.Redirect(Commons.Common.GetRootRequest() + "Default.aspx");
+                                }
+                            }
+                        }
+
                     }
                     else
                     {
@@ -75,19 +89,6 @@ namespace Promotion.Account
                         log.Info("Người dùng không được truy cập vào hệ thống");
                     }
                 }
-
-
-                //        Page.Response.Redirect("~/Default.aspx");
-                //    }
-                //    else
-                //    {
-                //        txtUserName.Focus();
-                //        FailureText.Text = "Người dùng không được sử dụng hệ thống.";
-                //        ErrorMessage.Visible = true;
-                //        log.Info("Tên đăng nhập và mật khẩu không phù hợp. User: " + txtUserName.Text);
-                //    }
-                //}
-
             }
             else
             {
@@ -117,8 +118,6 @@ namespace Promotion.Account
             }
             return validateUser;
         }
-
-
 
         private bool ValidateByAD(string strUsername, string strPassword, string strDomain)
         {
